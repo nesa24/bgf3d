@@ -1,0 +1,8 @@
+2007-12-11 更新： 
+将进入第一Phase的行为放在了GameInit()函数里面。删除了PhaseManger下面的两个Enter()调用，仅保留Phasemanager中ChangePhase()函数的调用Phase的Enter()函数的功能。
+
+2008-01-27 更新： 
+将Phase基类下的MouseClickAt( const POINT &posMouse );和void KeyDown( const WPARAM &wKey );两个函数改为多肽函数。
+
+2008-04-28 更新：
+Panel基类中重载的SetVisible(bool bVisible)函数取消，Panel的Visible效果通过重载Panel的Draw()函数来实现。
