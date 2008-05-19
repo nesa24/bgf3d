@@ -45,6 +45,7 @@
 
 #include "Shape.h"
 #include "Line2D.h"
+#include "Line3D.h"
 #include "Point2D.h"
 #include "TriangleStrip2D.h"
 

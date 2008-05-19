@@ -30,7 +30,7 @@ void Line2D::UpdateVertexBuffer()
 	//Create vertex according to position and color
 	CustomVertex2D TempVertex[2] = {
 		{ m_PosStart.x, m_PosStart.y, 0.0f, 0.0f, m_Color },
-		{ m_PosEnd.x, m_PosEnd.y, 0.0f, 0.0f, m_Color },
+		{ m_PosEnd.x,   m_PosEnd.y,   0.0f, 0.0f, m_Color },
 	};
 
 	//update vertex buffer
@@ -51,7 +51,7 @@ bool Line2D::Is3DShape()
 
 /////////////////////////////////////////////////////////////////
 //unique method
-void Line2D::UpdatePos( const POINT PS, const POINT PE )
+void Line2D::UpdatePos( const POINT2D PS, const POINT2D PE )
 {
 	m_PosStart = PS;
 	m_PosEnd   = PE;

@@ -60,7 +60,7 @@ bool TriangleStrip2D::Is3DShape()
 
 /////////////////////////////////////////////////////////////////
 //unique method
-void TriangleStrip2D::UpdatePos( POINT* pVertexes, const unsigned int iVertexNbr )
+void TriangleStrip2D::UpdatePos( POINT2D* pVertexes, const unsigned int iVertexNbr )
 {
 	//safty concern
 	if( iVertexNbr <= 0 )

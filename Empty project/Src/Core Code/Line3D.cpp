@@ -1,34 +1,39 @@
-#include ".\point2d.h"
+#include ".\line3d.h"
 
-Point2D::Point2D(void)
+Line3D::Line3D(void)
 {
-	m_Pos.x = 0;
-	m_Pos.y = 0;
+	m_PosStart.x = 0;
+	m_PosStart.y = 0;
+	m_PosStart.z = 0;
+	m_PosEnd.x = 0;
+	m_PosEnd.y = 0;
+	m_PosEnd.z = 0;
 	m_Color = 0xFFFFFFFF;
 
-	m_iPrimitiveNbr = iVertexNumberPoint2D;
+	m_iPrimitiveNbr = iVertexNumberLine2D;
 }
 
-Point2D::~Point2D(void)
+Line3D::~Line3D(void)
 {
 }
-
 
 /////////////////////////////////////////////////////////////////
 //method override
 //different shape will have different method of creating vertex
-void Point2D::CreateVertexBuffer()
+void Line3D::CreateVertexBuffer()
 {
 	g_pCanvas->GetGraphics()->CreateVertexBuffer( &m_pVertexBuffer, m_iPrimitiveNbr, true);
 }
 
 //the update of vertex is also different, accordingly
-void Point2D::UpdateVertexBuffer()
+void Line3D::UpdateVertexBuffer()
 {
 	//init vertex
 	//Create vertex according to position and color
-	CustomVertex2D TempVertex[1] = {
-		{ m_Pos.x, m_Pos.y, 0.0f, 0.0f, m_Color },
+	CustomVertex3D TempVertex[2] = 
+	{
+		{ m_PosStart.x, m_PosStart.y, m_PosStart.z, m_Color },
+		{ m_PosEnd.x,   m_PosEnd.y,   m_PosEnd.z,   m_Color },
 	};
 
 	//update vertex buffer
@@ -36,32 +41,33 @@ void Point2D::UpdateVertexBuffer()
 }
 
 //Primitive type
-ShapeType Point2D::GetShapeType()
+ShapeType Line3D::GetShapeType()
 {
-	return ShapePoint;
+	return ShapeLine;
 }
 
 //3D primitive type
-bool Point2D::Is3DShape()
+bool Line3D::Is3DShape()
 {
-	return false;
+	return true;
 }
 
 /////////////////////////////////////////////////////////////////
 //unique method
-void Point2D::UpdatePos( const POINT2D Pos )
+void Line3D::UpdatePos( const POINT3D PS, const POINT3D PE )
 {
-	m_Pos = Pos;
+	m_PosStart = PS;
+	m_PosEnd   = PE;
 
 	//update vertex buffer after alter of pos
 	UpdateVertexBuffer();
-
 }
 
-void Point2D::UpdateColor( const DWORD Color )
+void Line3D::UpdateColor( const DWORD Color )
 {
 	m_Color = Color;
 
 	//update vertex buffer after alter of color
 	UpdateVertexBuffer();
 }
+

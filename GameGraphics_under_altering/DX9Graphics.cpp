@@ -341,6 +341,9 @@ GraphicsError CDX9Graphics::InitGeometry()
 	HRESULT hres = 0;
 	if ( m_lpDev )
 	{
+		//初始化摄像头和世界坐标
+		InitMatrix();
+
 		//不使用光照处理
 		if ( FAILED( hres = m_lpDev->SetRenderState( D3DRS_LIGHTING, FALSE ) ) )
 		{
@@ -1143,6 +1146,49 @@ GraphicsError CDX9Graphics::UnlockSurface( const int iID )
 //////////////////////////////////////////////////////////////////////////////////////////////////
 //From here lys added
 
+/////////////////////////////////////////////////////////////////////////////////////////
+//General
+void CDX9Graphics::InitMatrix()
+{
+	D3DXMATRIX view_matrix;
+	D3DXMATRIX projection_matrix;
+	D3DXVECTOR3 eye_vector;
+	D3DXVECTOR3 lookat_vector;
+	D3DXVECTOR3 up_vector;
+
+	//Here we build our View Matrix, think of it as our camera.
+
+	//First we specify that our viewpoint is 8 units back on the Z-axis
+	eye_vector=D3DXVECTOR3( 0.0f, 0.0f,8.0f );
+
+	//We are looking towards the origin
+	lookat_vector=D3DXVECTOR3( 0.0f, 0.0f, 0.0f );
+
+	//The "up" direction is the positive direction on the y-axis
+	up_vector=D3DXVECTOR3(0.0f,1.0f,0.0f);
+
+	D3DXMatrixLookAtLH(&view_matrix,&eye_vector,
+									&lookat_vector,
+									&up_vector);
+
+	//Since our 'camera' will never move, we can set this once at the
+	//beginning and never worry about it again
+	m_lpDev->SetTransform(D3DTS_VIEW,&view_matrix);
+
+
+	D3DXMatrixPerspectiveFovLH(&projection_matrix, //Result Matrix
+								D3DX_PI/4,//Field of View, in radians.(PI/4) is typical (90 degrees)
+								( 640 / 480.0f ),     //Aspect ratio
+								1.0f,     //Near view plane
+								100.0f ); // Far view plane
+
+	//Our Projection matrix won't change either, so we set it now and never touch
+	//it again.
+	m_lpDev->SetTransform( D3DTS_PROJECTION, &projection_matrix );
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////
+//primitive rendering 
 //main function of 2D geometric shape render
 GraphicsError CDX9Graphics::Draw2DShape( ShapeType theType, void* pVertexBuffer, int iPrimitiveNumber)
 {
@@ -1155,6 +1201,17 @@ GraphicsError CDX9Graphics::Draw2DShape( ShapeType theType, void* pVertexBuffer,
 	case ShapeTriangleStrip:
 		return DrawTrianglestrip2D( (IDirect3DVertexBuffer9*)pVertexBuffer, iPrimitiveNumber );
 
+	default:
+		return ERR_D3D_SHAPE;
+	}
+}
+
+GraphicsError CDX9Graphics::Draw3DShape( ShapeType theType, void* pVertexBuffer, int iPrimitiveNumber )
+{
+	switch (theType)
+	{
+	case ShapeLine:
+		return DrawLine3D( (IDirect3DVertexBuffer9*)pVertexBuffer, iPrimitiveNumber );
 	default:
 		return ERR_D3D_SHAPE;
 	}
@@ -1242,16 +1299,7 @@ void CDX9Graphics::ReleaseVertexBuffer( void* pBuffer )
 }
 
 
-GraphicsError CDX9Graphics::Draw3DShape( IDirect3DVertexBuffer9* pVertexBuffer, ShapeType theShape )
-{
-	switch (theShape)
-	{
-	case ShapeLine:
 
-	default:
-		return ERR_D3D_SHAPE;
-	}
-}
 	
 //Draw shape line 2D
 GraphicsError CDX9Graphics::DrawLine2D( IDirect3DVertexBuffer9* pVertexBuffer, int iPrimitiveNumber )
@@ -1259,6 +1307,17 @@ GraphicsError CDX9Graphics::DrawLine2D( IDirect3DVertexBuffer9* pVertexBuffer, i
 	m_lpDev->SetFVF( D3D9_CUSTOMVERTEX2D );
 
 	m_lpDev->SetStreamSource(0,pVertexBuffer,0,sizeof(CustomVertex2D));
+
+	m_lpDev->DrawPrimitive(D3DPT_LINELIST,0,iPrimitiveNumber);
+
+	return RIGHT_D3D_SHAPE;
+}
+//Draw shape line 3D
+GraphicsError CDX9Graphics::DrawLine3D( IDirect3DVertexBuffer9* pVertexBuffer, int iPrimitiveNumber )
+{
+	m_lpDev->SetFVF( D3D9_CUSTOMVERTEX3D );
+
+	m_lpDev->SetStreamSource(0,pVertexBuffer,0,sizeof(CustomVertex3D));
 
 	m_lpDev->DrawPrimitive(D3DPT_LINELIST,0,iPrimitiveNumber);
 
@@ -1276,6 +1335,17 @@ GraphicsError CDX9Graphics::DrawPoint2D( IDirect3DVertexBuffer9* pVertexBuffer, 
 
 	return RIGHT_D3D_SHAPE;
 }
+//Draw shape point 3D
+GraphicsError CDX9Graphics::DrawPoint3D( IDirect3DVertexBuffer9* pVertexBuffer, int iPrimitiveNumber )
+{
+	m_lpDev->SetFVF( D3D9_CUSTOMVERTEX3D );
+
+	m_lpDev->SetStreamSource(0,pVertexBuffer,0,sizeof(CustomVertex3D));
+
+	m_lpDev->DrawPrimitive(D3DPT_POINTLIST,0,iPrimitiveNumber);
+
+	return RIGHT_D3D_SHAPE;
+}
 
 //Draw shape triangle strip 2D
 GraphicsError CDX9Graphics::DrawTrianglestrip2D( IDirect3DVertexBuffer9* pVertexBuffer, int iPrimitiveNumber )
@@ -1288,7 +1358,17 @@ GraphicsError CDX9Graphics::DrawTrianglestrip2D( IDirect3DVertexBuffer9* pVertex
 
 	return RIGHT_D3D_SHAPE;
 }
+//Draw shape triangle strip 3D
+GraphicsError CDX9Graphics::DrawTrianglestrip3D( IDirect3DVertexBuffer9* pVertexBuffer, int iPrimitiveNumber )
+{
+	m_lpDev->SetFVF( D3D9_CUSTOMVERTEX3D );
 
+	m_lpDev->SetStreamSource(0,pVertexBuffer,0,sizeof(CustomVertex3D));
+
+	m_lpDev->DrawPrimitive(D3DPT_TRIANGLESTRIP,0,iPrimitiveNumber);
+
+	return RIGHT_D3D_SHAPE;
+}
 
 //lys added end
 /////////////////////////////////////////////////////////////////////////////////////////////////

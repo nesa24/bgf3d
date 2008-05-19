@@ -1,17 +1,18 @@
 #pragma once
 #include "shape.h"
 
-class Point2D :
+class Line3D :
 	public Shape
 {
 public:
-	Point2D(void);
-	~Point2D(void);
+	Line3D(void);
+	~Line3D(void);
+
 public:
 	//basic override
 	static Object* CreateObject( void )
 	{
-		return (Object*)new Point2D;
+		return (Object*)new Line3D;
 	}
 	ObjectType GetObjectType( void ) const 
 	{ 
@@ -31,10 +32,12 @@ public:
 	bool Is3DShape();
 
 public:
-	void UpdatePos( const POINT2D Pos );
+	void UpdatePos( const POINT3D PS, const POINT3D PE );
 	void UpdateColor( const DWORD Color );
 
 private:
-	POINT2D m_Pos;
+	POINT3D m_PosStart;
+	POINT3D m_PosEnd;
 	DWORD m_Color;
+
 };

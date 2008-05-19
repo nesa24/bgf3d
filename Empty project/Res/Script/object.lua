@@ -29,6 +29,7 @@ newEditBox
 	bPassWord = false,
 };
 
+--[[
 newObject
 {
 	strType = 'StaticImage',
@@ -52,4 +53,5 @@ newObject
 		},
 	},
 };
+]]
 

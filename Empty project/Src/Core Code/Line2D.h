@@ -32,11 +32,11 @@ public:
 	bool Is3DShape();
 
 public:
-	void UpdatePos( const POINT PS, const POINT PE );
+	void UpdatePos( const POINT2D PS, const POINT2D PE );
 	void UpdateColor( const DWORD Color );
 
 private:
-	POINT m_PosStart;
-	POINT m_PosEnd;
+	POINT2D m_PosStart;
+	POINT2D m_PosEnd;
 	DWORD m_Color;
 };
