@@ -62,16 +62,24 @@ public:
 ///////////////////////////
 //ly's added
 public:
-	GraphicsError Draw2DShape( ShapeType theType, void* pVertexBuffer, int iPrimitiveNumber);
-	GraphicsError Draw3DShape( IDirect3DVertexBuffer9* pVertexBuffer, ShapeType theShape );
+	GraphicsError Draw2DShape( ShapeType theType, void* pVertexBuffer, int iPrimitiveNumber );
+	GraphicsError Draw3DShape( ShapeType theType, void* pVertexBuffer, int iPrimitiveNumber );
 	GraphicsError CreateVertexBuffer( void** ppBuffer, int iBufferSize, bool b2DBuffer);
 	GraphicsError UpdateVertexBuffer( void* pVertex, void* pBuffer, size_t Size );
 	void ReleaseVertexBuffer( void* pBuffer );
 
 private:
+	//basic initiallization
+	void InitMatrix();
+
+	//primitive render
 	GraphicsError DrawLine2D( IDirect3DVertexBuffer9* pVertexBuffer, int iPrimitiveNumber );
 	GraphicsError DrawPoint2D( IDirect3DVertexBuffer9* pVertexBuffer, int iPrimitiveNumber );
 	GraphicsError DrawTrianglestrip2D( IDirect3DVertexBuffer9* pVertexBuffer, int iPrimitiveNumber );
+
+	GraphicsError DrawLine3D( IDirect3DVertexBuffer9* pVertexBuffer, int iPrimitiveNumber );
+	GraphicsError DrawPoint3D( IDirect3DVertexBuffer9* pVertexBuffer, int iPrimitiveNumber );
+	GraphicsError DrawTrianglestrip3D( IDirect3DVertexBuffer9* pVertexBuffer, int iPrimitiveNumber );
 
 //ly's added end
 ///////////////////////////

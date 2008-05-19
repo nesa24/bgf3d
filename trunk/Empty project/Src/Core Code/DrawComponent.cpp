@@ -51,7 +51,7 @@ int DrawBasic::Draw( Object* pObj, const Canvas* pCan )
 		if( pShape->Is3DShape() )
 		{
 			//draw 3D shape
-			//codes need here
+			pCan->GetGraphics()->Draw3DShape( pShape->GetShapeType(), pShape->GetVertexBuffer(), pShape->GetPrimitiveNbr() );
 		}
 		else
 		{

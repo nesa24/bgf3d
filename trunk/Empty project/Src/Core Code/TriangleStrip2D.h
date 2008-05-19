@@ -34,10 +34,10 @@ public:
 	bool Is3DShape();
 
 public:
-	void UpdatePos( POINT* pVertexes, const unsigned int iVertexNbr );
+	void UpdatePos( POINT2D* pVertexes, const unsigned int iVertexNbr );
 	void UpdateColor( const DWORD Color );
 
 private:
-	vector<POINT> m_vec_PosList;
+	vector<POINT2D> m_vec_PosList;
 	DWORD m_Color;
 };

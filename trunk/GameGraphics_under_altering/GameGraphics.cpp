@@ -223,6 +223,15 @@ GraphicsError CGameGraphics::Draw2DShape( ShapeType theType, void* pVertexBuffer
 
 }
 
+GraphicsError CGameGraphics::Draw3DShape( ShapeType theType, void* pVertexBuffer, int iPrimitiveNumber)
+{
+	//Write Error Report
+	sprintf( g_strError_Report_Buffer, "UnlockSurface()" );
+	//
+	return ERR_VIRTUAL;
+
+}
+
 GraphicsError CGameGraphics::CreateVertexBuffer( void** ppBuffer, int iBufferSize, bool b2DBuffer)
 {
 	//Write Error Report

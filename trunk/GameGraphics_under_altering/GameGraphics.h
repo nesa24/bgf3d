@@ -126,7 +126,8 @@ public:
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//ly's added
-	virtual GraphicsError Draw2DShape( ShapeType theType, void* pVertexBuffer, int iPrimitiveNumber);
+	virtual GraphicsError Draw2DShape( ShapeType theType, void* pVertexBuffer, int iPrimitiveNumber );
+	virtual GraphicsError Draw3DShape( ShapeType theType, void* pVertexBuffer, int iPrimitiveNumber );
 	virtual GraphicsError CreateVertexBuffer( void** ppBuffer, int iBufferSize, bool b2DBuffer);
 	virtual GraphicsError UpdateVertexBuffer( void* pVertex, void* pBuffer, size_t Size );
 	virtual void ReleaseVertexBuffer( void* pBuffer ) = 0;
