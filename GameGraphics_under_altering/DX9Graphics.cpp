@@ -344,6 +344,14 @@ GraphicsError CDX9Graphics::InitGeometry()
 		//初始化摄像头和世界坐标
 		InitMatrix();
 
+		//打开定点半透明效果
+		//set alpha
+		m_lpDev->SetRenderState(D3DRS_ALPHABLENDENABLE, true);
+		// set alpha blend for source cone
+		m_lpDev->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
+		// set alpha blend for dest cone
+		m_lpDev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
+
 		//不使用光照处理
 		if ( FAILED( hres = m_lpDev->SetRenderState( D3DRS_LIGHTING, FALSE ) ) )
 		{
@@ -1185,6 +1193,7 @@ void CDX9Graphics::InitMatrix()
 	//Our Projection matrix won't change either, so we set it now and never touch
 	//it again.
 	m_lpDev->SetTransform( D3DTS_PROJECTION, &projection_matrix );
+
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -1212,6 +1221,8 @@ GraphicsError CDX9Graphics::Draw3DShape( ShapeType theType, void* pVertexBuffer,
 	{
 	case ShapeLine:
 		return DrawLine3D( (IDirect3DVertexBuffer9*)pVertexBuffer, iPrimitiveNumber );
+	case ShapeTriangleStrip:
+		return DrawTrianglestrip3D( (IDirect3DVertexBuffer9*)pVertexBuffer, iPrimitiveNumber );
 	default:
 		return ERR_D3D_SHAPE;
 	}

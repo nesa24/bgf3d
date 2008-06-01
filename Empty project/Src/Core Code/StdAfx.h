@@ -48,6 +48,7 @@
 #include "Line3D.h"
 #include "Point2D.h"
 #include "TriangleStrip2D.h"
+#include "TriangleStrip3D.h"
 
 #include "ActionModule.h"
 

@@ -22,7 +22,7 @@ Line3D::~Line3D(void)
 //different shape will have different method of creating vertex
 void Line3D::CreateVertexBuffer()
 {
-	g_pCanvas->GetGraphics()->CreateVertexBuffer( &m_pVertexBuffer, m_iPrimitiveNbr, true);
+	g_pCanvas->GetGraphics()->CreateVertexBuffer( &m_pVertexBuffer, m_iPrimitiveNbr, false);
 }
 
 //the update of vertex is also different, accordingly
