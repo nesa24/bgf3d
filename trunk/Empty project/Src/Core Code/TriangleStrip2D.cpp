@@ -5,6 +5,9 @@ TriangleStrip2D::TriangleStrip2D(void)
 	m_Color = 0xFFFFFFFF;
 
 	m_iPrimitiveNbr = 0;
+
+	//set initial layer
+	m_uiLayer = i2DPrimitiveInitLayer;
 }
 
 
@@ -26,11 +29,14 @@ void TriangleStrip2D::UpdateVertexBuffer()
 		return;
 
 	//init vertex
+	//Set the layer of the primitive as the layer of the object
+	const float fLayer = this->GetLayer() / 10000.0f;
+
 	//Create vertex according to position and color
 	vector<CustomVertex2D> vec_TempVertex;
 	CustomVertex2D TempVertex;
 	TempVertex.rhw  = 0.0f;
-	TempVertex.z	= 0.0f;
+	TempVertex.z	= fLayer;
 
 	for( int i = 0; i < m_iPrimitiveNbr; ++i )
 	{
@@ -77,7 +83,7 @@ void TriangleStrip2D::UpdatePos( POINT2D* pVertexes, const unsigned int iVertexN
 
 		//rebuild the vector
 		m_vec_PosList.clear();
-		//update vertexes if it's the same number 
+		//remake vertexes if it is not the same number 
 		for( int i = 0; i < m_iPrimitiveNbr; ++i )
 		{
 			m_vec_PosList.push_back( pVertexes[i] );

@@ -6,6 +6,7 @@
 const int iVertexNumberPoint2D = 1;
 const int iVertexNumberLine2D = 2;
 const int iVertexNumberTriangle2D = 3;
+const int i2DPrimitiveInitLayer = 8500;
 
 struct POINT2D
 {

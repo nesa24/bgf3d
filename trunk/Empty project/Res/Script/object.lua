@@ -29,13 +29,13 @@ newEditBox
 	bPassWord = false,
 };
 
---[[
+
 newObject
 {
 	strType = 'StaticImage',
 	strPhase = 'phLogin',
 	strPanel = 'panelDefault',
-	intLayer = 80,
+	intLayer = 8000,
 	iPosX = 0,
 	iPosY = 0,
 	iSizeX = 800,
@@ -53,5 +53,4 @@ newObject
 		},
 	},
 };
-]]
 

@@ -7,6 +7,9 @@ Point2D::Point2D(void)
 	m_Color = 0xFFFFFFFF;
 
 	m_iPrimitiveNbr = iVertexNumberPoint2D;
+
+	//set initial layer
+	m_uiLayer = i2DPrimitiveInitLayer;
 }
 
 Point2D::~Point2D(void)
@@ -26,9 +29,12 @@ void Point2D::CreateVertexBuffer()
 void Point2D::UpdateVertexBuffer()
 {
 	//init vertex
+	//Set the layer of the primitive as the layer of the object
+	const float fLayer = this->GetLayer() / 10000.0f;
+
 	//Create vertex according to position and color
 	CustomVertex2D TempVertex[1] = {
-		{ m_Pos.x, m_Pos.y, 0.0f, 0.0f, m_Color },
+		{ m_Pos.x, m_Pos.y, fLayer, 0.0f, m_Color },
 	};
 
 	//update vertex buffer

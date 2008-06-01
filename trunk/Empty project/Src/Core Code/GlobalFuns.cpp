@@ -35,6 +35,7 @@ void RegisterToFactory( void )
 	OF.Register( "Line3D", Line3D::CreateObject );
 	OF.Register( "Point2D", Point2D::CreateObject );
 	OF.Register( "TriangleStrip2D", TriangleStrip2D::CreateObject );
+	OF.Register( "TriangleStrip3D", TriangleStrip3D::CreateObject );
 
 
 	PhaseFactory &PF = singPhaseFactory::instance();
