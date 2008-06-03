@@ -40,6 +40,11 @@ public:
 	//the update of vertex is also different, accordingly
 	virtual void UpdateVertexBuffer() = 0;
 
+	//For rotating 
+	//return 0 if base method is invoked
+	virtual float GetRot( int iAxisFlag ) { return 0.0f; };
+	virtual void  SetRot( int iAxisFlag, float fRotation ) { return; };
+
 	//type could be vary for different shapes 
 	virtual ShapeType GetShapeType() = 0;
 	virtual bool Is3DShape() = 0;

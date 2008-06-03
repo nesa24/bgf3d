@@ -351,6 +351,9 @@ GraphicsError CDX9Graphics::InitGeometry()
 		m_lpDev->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
 		// set alpha blend for dest cone
 		m_lpDev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
+		//set back face culling
+		m_lpDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_FORCE_DWORD);
+
 
 		//不使用光照处理
 		if ( FAILED( hres = m_lpDev->SetRenderState( D3DRS_LIGHTING, FALSE ) ) )
@@ -1215,8 +1218,41 @@ GraphicsError CDX9Graphics::Draw2DShape( ShapeType theType, void* pVertexBuffer,
 	}
 }
 
-GraphicsError CDX9Graphics::Draw3DShape( ShapeType theType, void* pVertexBuffer, int iPrimitiveNumber )
+//main function of 3D geometric shape render
+GraphicsError CDX9Graphics::Draw3DShape( ShapeType theType, void* pVertexBuffer, int iPrimitiveNumber, float* fRotate )
 {
+	//init world mitrix
+	D3DXMATRIX matWorld;
+	D3DXMATRIX trans_matrix;
+	//init vars of rotating
+	D3DXMATRIX rot_x_matrix;   
+	D3DXMATRIX rot_z_matrix;   
+	D3DXMATRIX rot_y_matrix;   
+	D3DXMATRIX rot_matrix;     
+	float rot_x=fRotate[0];    
+	float rot_y=fRotate[1];    
+	float rot_z=fRotate[2];    
+
+	//set rotating matrix
+	D3DXMatrixRotationY(&rot_y_matrix,rot_y);
+	D3DXMatrixRotationX(&rot_x_matrix,rot_x);
+	D3DXMatrixRotationZ(&rot_z_matrix,rot_z);
+
+	//Combine the 2 matrices to get our final Rotation Matrix
+	/////////////////////////////////
+	/*here needs further alteration*/
+	/////////////////////////////////
+	D3DXMatrixMultiply(&rot_matrix,&rot_x_matrix,&rot_y_matrix);
+
+	//Translate out cube in/out of the screen
+	D3DXMatrixTranslation(&trans_matrix,0.0f,0.0f,8.0f);
+
+	//Build our final World Matrix
+//	D3DXMatrixMultiply(&matWorld,&rot_matrix,&trans_matrix);
+
+	//Set our World Matrix
+	m_lpDev->SetTransform(D3DTS_WORLD,&rot_matrix );
+
 	switch (theType)
 	{
 	case ShapeLine:

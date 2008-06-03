@@ -223,7 +223,7 @@ GraphicsError CGameGraphics::Draw2DShape( ShapeType theType, void* pVertexBuffer
 
 }
 
-GraphicsError CGameGraphics::Draw3DShape( ShapeType theType, void* pVertexBuffer, int iPrimitiveNumber)
+GraphicsError CGameGraphics::Draw3DShape( ShapeType theType, void* pVertexBuffer, int iPrimitiveNumber, float* fRotate )
 {
 	//Write Error Report
 	sprintf( g_strError_Report_Buffer, "UnlockSurface()" );

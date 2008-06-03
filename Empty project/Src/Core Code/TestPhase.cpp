@@ -3,6 +3,7 @@
 
 TestPhase::TestPhase(void)
 {
+	m_pTestPrimitive = NULL;
 }
 
 TestPhase::~TestPhase(void)
@@ -29,23 +30,23 @@ bool TestPhase::Enter( void )
 	this->GetPanel( "panelDefault" )->AddObject( pObj );
 
 
-	//triangle strip test
+	//*triangle strip test
 	int iside = 40;
-	POINT2D posTri = {220, 10};
+	POINT2D posTri = {320, 50};
 	pObj = singObjectFactory::instance().Create( "TriangleStrip2D" );
 	TriangleStrip2D* pTriangleStrip = (TriangleStrip2D*)pObj;
-	POINT2D Pos[4] = {
+	POINT2D Pos[3] = {
 		{posTri.x, posTri.y},
 		{posTri.x+iside, posTri.y},
 		{posTri.x, posTri.y+iside},
-		{posTri.x+iside, posTri.y+iside},
+//		{posTri.x+iside, posTri.y+iside},
 	};
 	pTriangleStrip->CreateVertexBuffer();
-	pTriangleStrip->UpdateColor( 0xFF000000 );
-	pTriangleStrip->UpdatePos( Pos, 4 );
+	pTriangleStrip->UpdateColor( 0xFFAA0000 );
+	pTriangleStrip->UpdatePos( Pos, 3 );
 
 	this->GetPanel( "panelDefault" )->AddObject( pObj );
-
+	//*/
 
 	//3D line test
 	{
@@ -77,7 +78,7 @@ bool TestPhase::Enter( void )
 	this->GetPanel( "panelDefault" )->AddObject( pObj );
 	}
 
-	//3D triangle test
+	/*/3D triangle test
 	{
 	pObj = singObjectFactory::instance().Create( "TriangleStrip3D" );
 	TriangleStrip3D* pLine3D = (TriangleStrip3D*)pObj;
@@ -93,6 +94,8 @@ bool TestPhase::Enter( void )
 
 	this->GetPanel( "panelDefault" )->AddObject( pObj );
 	}
+	*/
+
 	//3D triangle test 2nd
 	{
 		pObj = singObjectFactory::instance().Create( "TriangleStrip3D" );
@@ -108,6 +111,20 @@ bool TestPhase::Enter( void )
 		pLine3D->UpdatePos(PosLine3D, 4);
 
 		this->GetPanel( "panelDefault" )->AddObject( pObj );
+		m_pTestPrimitive = (void*)pObj;
 	}
 	return true;
 }
+
+
+//RTL override
+void TestPhase::RealTimeLogic(void)
+{
+	static float fRot = 0.0f;
+	if( NULL != m_pTestPrimitive )
+	{
+		fRot += 0.05f;
+		((TriangleStrip3D*)m_pTestPrimitive)->SetRot( 1, fRot );
+	}
+}
+
