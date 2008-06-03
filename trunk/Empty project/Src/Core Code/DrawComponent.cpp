@@ -45,13 +45,20 @@ int DrawBasic::Draw( Object* pObj, const Canvas* pCan )
 	/////////////////////////////////////////////////////////
 	//differ the render method of sprites and primitive shapes
 	Shape* pShape = NULL;
+	float fRotate[3];
+
 	if( ObjectPrimitveShape == pObj->GetObjectType() )
 	{
 		pShape = (Shape*)pObj;
 		if( pShape->Is3DShape() )
 		{
+			//record rotating reference
+			fRotate[0] = pShape->GetRot( 0 );
+			fRotate[1] = pShape->GetRot( 1 );
+			fRotate[2] = pShape->GetRot( 2 );
+
 			//draw 3D shape
-			pCan->GetGraphics()->Draw3DShape( pShape->GetShapeType(), pShape->GetVertexBuffer(), pShape->GetPrimitiveNbr() );
+			pCan->GetGraphics()->Draw3DShape( pShape->GetShapeType(), pShape->GetVertexBuffer(), pShape->GetPrimitiveNbr(), fRotate );
 		}
 		else
 		{

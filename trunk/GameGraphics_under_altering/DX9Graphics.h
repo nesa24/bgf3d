@@ -63,13 +63,14 @@ public:
 //ly's added
 public:
 	GraphicsError Draw2DShape( ShapeType theType, void* pVertexBuffer, int iPrimitiveNumber );
-	GraphicsError Draw3DShape( ShapeType theType, void* pVertexBuffer, int iPrimitiveNumber );
+	GraphicsError Draw3DShape( ShapeType theType, void* pVertexBuffer, int iPrimitiveNumber, float* fRotate );
 	GraphicsError CreateVertexBuffer( void** ppBuffer, int iBufferSize, bool b2DBuffer);
 	GraphicsError UpdateVertexBuffer( void* pVertex, void* pBuffer, size_t Size );
 	void ReleaseVertexBuffer( void* pBuffer );
 
 private:
 	//basic initiallization
+	//** under alteration
 	void InitMatrix();
 
 	//primitive render

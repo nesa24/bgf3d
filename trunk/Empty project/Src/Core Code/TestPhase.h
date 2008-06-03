@@ -16,5 +16,10 @@ public:
 
 	bool Leave( void );
 	bool Enter( void );
+	void RealTimeLogic(void);
 
+
+
+private:
+	void* m_pTestPrimitive;
 };
