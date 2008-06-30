@@ -7,16 +7,18 @@
 #include "PhaseFactory.h"
 #include "PhaseManager.h"
 
-/************************************************************************/
-/* added drawcomponent                                                                     */
-/************************************************************************/
 #include "DrawComponent.h"
+#include "Camera.h"
 
 
+/************************************************************************/
+/* added general singleton                                                                     */
+/************************************************************************/
 typedef Singleton< ActionModule >		singActionModule;
 typedef Singleton< ObjectFactory >		singObjectFactory;
 typedef Singleton< PhaseFactory >		singPhaseFactory;
 typedef Singleton< PhaseManager >		singPhaseManager;
+typedef Singleton< Camera >				singCamera;
 
 /************************************************************************/
 /* added drawcomponent singleton                                                                     */

@@ -1,18 +1,17 @@
 #pragma once
 #include "shape.h"
 
-class Line3D :
+class TriangleStrip3D :
 	public Shape
 {
 public:
-	Line3D(void);
-	~Line3D(void);
-
+	TriangleStrip3D(void);
+	~TriangleStrip3D(void);
 public:
 	//basic override
 	static Object* CreateObject( void )
 	{
-		return (Object*)new Line3D;
+		return (Object*)new TriangleStrip3D;
 	}
 	ObjectType GetObjectType( void ) const 
 	{ 
@@ -36,12 +35,10 @@ public:
 	bool Is3DShape();
 
 public:
-	void UpdatePos( const POINT3D PS, const POINT3D PE );
+	void UpdatePos( POINT3D* pVertexes, const unsigned int iVertexNbr );
 	void UpdateColor( const DWORD Color );
 
 private:
-	POINT3D m_PosStart;
-	POINT3D m_PosEnd;
+	vector<POINT3D> m_vec_PosList;
 	DWORD m_Color;
-
 };

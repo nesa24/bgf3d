@@ -62,11 +62,17 @@ public:
 ///////////////////////////
 //ly's added
 public:
+	//orimitive present
 	GraphicsError Draw2DShape( ShapeType theType, void* pVertexBuffer, int iPrimitiveNumber );
-	GraphicsError Draw3DShape( ShapeType theType, void* pVertexBuffer, int iPrimitiveNumber, float* fRotate );
+	GraphicsError Draw3DShape( ShapeType theType, void* pVertexBuffer, int iPrimitiveNumber );
+	//vertex buffer control
 	GraphicsError CreateVertexBuffer( void** ppBuffer, int iBufferSize, bool b2DBuffer);
 	GraphicsError UpdateVertexBuffer( void* pVertex, void* pBuffer, size_t Size );
 	void ReleaseVertexBuffer( void* pBuffer );
+	//primitive control
+	GraphicsError PrimitiveTranslate( float* pfRotate, float* pfPosition );
+	//Camera control
+	GraphicsError SetCamera( float* pfEyeVec, float* pfLookVec, float* pfUpVec );
 
 private:
 	//basic initiallization

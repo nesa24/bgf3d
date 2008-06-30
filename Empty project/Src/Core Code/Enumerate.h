@@ -92,4 +92,5 @@ enum InputType
 	//Number of items
 	NbrOfInput
 };
+
 #endif

@@ -27,7 +27,6 @@ void Canvas::Render()
 	if ( m_bDirty )
 	{
 		m_pGameGraphics->FillSurface( 0, 0x0000ff );
-		m_pGameGraphics->SetupMatrices();
 		m_pGameGraphics->BeginRender();
 
 		//render objects
@@ -45,6 +44,10 @@ void Canvas::Render()
 BOOL Canvas::InitCanvas()
 {
 	m_pGameGraphics->InitGeometry();
+
+	//init 3D camera
+	singCamera::instance().InitCamera( m_pGameGraphics );
+	singCamera::instance().SetDefaultPosition();
 
 	//load pictures
 	int prsize = (int)m_vctPicRes.size();

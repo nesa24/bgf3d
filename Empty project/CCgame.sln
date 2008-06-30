@@ -1,6 +1,11 @@
 Microsoft Visual Studio Solution File, Format Version 8.00
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CCgame", "CCgame.vcproj", "{58F5A557-0A4D-4B93-99F2-E39880DD5611}"
 	ProjectSection(ProjectDependencies) = postProject
+		{4BBC02FC-43AF-48C7-8959-5820DB570EFC} = {4BBC02FC-43AF-48C7-8959-5820DB570EFC}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameGraphics", "..\GameGraphics_under_altering\GameGraphics.vcproj", "{4BBC02FC-43AF-48C7-8959-5820DB570EFC}"
+	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
 Global
@@ -13,6 +18,10 @@ Global
 		{58F5A557-0A4D-4B93-99F2-E39880DD5611}.Debug.Build.0 = Debug|Win32
 		{58F5A557-0A4D-4B93-99F2-E39880DD5611}.Release.ActiveCfg = Release|Win32
 		{58F5A557-0A4D-4B93-99F2-E39880DD5611}.Release.Build.0 = Release|Win32
+		{4BBC02FC-43AF-48C7-8959-5820DB570EFC}.Debug.ActiveCfg = Debug|Win32
+		{4BBC02FC-43AF-48C7-8959-5820DB570EFC}.Debug.Build.0 = Debug|Win32
+		{4BBC02FC-43AF-48C7-8959-5820DB570EFC}.Release.ActiveCfg = Release|Win32
+		{4BBC02FC-43AF-48C7-8959-5820DB570EFC}.Release.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection
