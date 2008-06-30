@@ -352,7 +352,7 @@ GraphicsError CDX9Graphics::InitGeometry()
 		// set alpha blend for dest cone
 		m_lpDev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
 		//set back face culling
-		m_lpDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_FORCE_DWORD);
+		//m_lpDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
 
 
 		//不使用光照处理
@@ -1168,16 +1168,21 @@ void CDX9Graphics::InitMatrix()
 	D3DXVECTOR3 up_vector;
 
 	//Here we build our View Matrix, think of it as our camera.
+	D3DXMatrixPerspectiveFovLH(&projection_matrix, //Result Matrix
+								D3DX_PI/4,//Field of View, in radians.(PI/4) is typical (90 degrees)
+								( 640 / 480.0f ),     //Aspect ratio
+								1.0f,     //Near view plane
+								100.0f ); // Far view plane
+	//Our Projection matrix won't change either, so we set it now and never touch
+	//it again.
+	m_lpDev->SetTransform( D3DTS_PROJECTION, &projection_matrix );
 
 	//First we specify that our viewpoint is 8 units back on the Z-axis
-	eye_vector=D3DXVECTOR3( 0.0f, 0.0f,8.0f );
-
+	eye_vector=D3DXVECTOR3( 0.0f, 3.0f, -5.0f );
 	//We are looking towards the origin
 	lookat_vector=D3DXVECTOR3( 0.0f, 0.0f, 0.0f );
-
 	//The "up" direction is the positive direction on the y-axis
 	up_vector=D3DXVECTOR3(0.0f,1.0f,0.0f);
-
 	D3DXMatrixLookAtLH(&view_matrix,&eye_vector,
 									&lookat_vector,
 									&up_vector);
@@ -1185,25 +1190,16 @@ void CDX9Graphics::InitMatrix()
 	//Since our 'camera' will never move, we can set this once at the
 	//beginning and never worry about it again
 	m_lpDev->SetTransform(D3DTS_VIEW,&view_matrix);
-
-
-	D3DXMatrixPerspectiveFovLH(&projection_matrix, //Result Matrix
-								D3DX_PI/4,//Field of View, in radians.(PI/4) is typical (90 degrees)
-								( 640 / 480.0f ),     //Aspect ratio
-								1.0f,     //Near view plane
-								100.0f ); // Far view plane
-
-	//Our Projection matrix won't change either, so we set it now and never touch
-	//it again.
-	m_lpDev->SetTransform( D3DTS_PROJECTION, &projection_matrix );
-
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
 //primitive rendering 
 //main function of 2D geometric shape render
-GraphicsError CDX9Graphics::Draw2DShape( ShapeType theType, void* pVertexBuffer, int iPrimitiveNumber)
+GraphicsError CDX9Graphics::Draw2DShape( ShapeType theType, void* pVertexBuffer, int iPrimitiveNumber )
 {
+	//close back face culling
+	m_lpDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
+
 	switch (theType)
 	{
 	case ShapePoint:
@@ -1219,39 +1215,10 @@ GraphicsError CDX9Graphics::Draw2DShape( ShapeType theType, void* pVertexBuffer,
 }
 
 //main function of 3D geometric shape render
-GraphicsError CDX9Graphics::Draw3DShape( ShapeType theType, void* pVertexBuffer, int iPrimitiveNumber, float* fRotate )
+GraphicsError CDX9Graphics::Draw3DShape( ShapeType theType, void* pVertexBuffer, int iPrimitiveNumber )
 {
-	//init world mitrix
-	D3DXMATRIX matWorld;
-	D3DXMATRIX trans_matrix;
-	//init vars of rotating
-	D3DXMATRIX rot_x_matrix;   
-	D3DXMATRIX rot_z_matrix;   
-	D3DXMATRIX rot_y_matrix;   
-	D3DXMATRIX rot_matrix;     
-	float rot_x=fRotate[0];    
-	float rot_y=fRotate[1];    
-	float rot_z=fRotate[2];    
-
-	//set rotating matrix
-	D3DXMatrixRotationY(&rot_y_matrix,rot_y);
-	D3DXMatrixRotationX(&rot_x_matrix,rot_x);
-	D3DXMatrixRotationZ(&rot_z_matrix,rot_z);
-
-	//Combine the 2 matrices to get our final Rotation Matrix
-	/////////////////////////////////
-	/*here needs further alteration*/
-	/////////////////////////////////
-	D3DXMatrixMultiply(&rot_matrix,&rot_x_matrix,&rot_y_matrix);
-
-	//Translate out cube in/out of the screen
-	D3DXMatrixTranslation(&trans_matrix,0.0f,0.0f,8.0f);
-
-	//Build our final World Matrix
-//	D3DXMatrixMultiply(&matWorld,&rot_matrix,&trans_matrix);
-
-	//Set our World Matrix
-	m_lpDev->SetTransform(D3DTS_WORLD,&rot_matrix );
+	//open back face culling
+	m_lpDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
 
 	switch (theType)
 	{
@@ -1416,6 +1383,78 @@ GraphicsError CDX9Graphics::DrawTrianglestrip3D( IDirect3DVertexBuffer9* pVertex
 
 	return RIGHT_D3D_SHAPE;
 }
+
+//////////////////////////////////////////////////////////
+//Primitive control
+
+//Rotation
+GraphicsError CDX9Graphics::PrimitiveTranslate( float* pfRotate, float* pfPosition )
+{
+	//safty concern
+	if( NULL == pfRotate || NULL == pfPosition )
+		return ERR_D3D_SHAPE;
+
+	//init world mitrix
+	D3DXMATRIX matWorld;
+	D3DXMATRIX trans_matrix;
+
+	//init vars of rotating
+	D3DXMATRIX rot_x_matrix;   
+	D3DXMATRIX rot_z_matrix;   
+	D3DXMATRIX rot_y_matrix;   
+	D3DXMATRIX rot_matrix;     
+
+	//set rotating matrix
+	D3DXMatrixRotationX(&rot_x_matrix,pfRotate[AxisX]);
+	D3DXMatrixRotationY(&rot_y_matrix,pfRotate[AxisY]);
+	D3DXMatrixRotationZ(&rot_z_matrix,pfRotate[AxisZ]);
+
+	//Combine the 2 matrices to get our final Rotation Matrix
+	/////////////////////////////////
+	/*here needs further alteration*/
+	/////////////////////////////////
+	D3DXMatrixMultiply(&rot_matrix,&rot_x_matrix,&rot_y_matrix);
+
+
+	//set position translate
+	D3DXMatrixTranslation(&trans_matrix,pfPosition[AxisX],pfPosition[AxisY],pfPosition[AxisZ]);
+
+	//Build our final World Matrix
+	D3DXMatrixMultiply(&matWorld,&rot_matrix,&trans_matrix);
+
+
+	//Set our World Matrix
+	m_lpDev->SetTransform(D3DTS_WORLD,&matWorld );
+
+	return RIGHT_D3D_SHAPE;
+}
+
+
+//////////////////////////////////////////////////////////
+//camera control
+GraphicsError CDX9Graphics::SetCamera( float* pfEyeVec, float* pfLookVec, float* pfUpVec )
+{
+	//safty concern
+	if( NULL == pfEyeVec || NULL == pfLookVec || NULL == pfUpVec )
+		return ERR_D3D_CAMERA;
+
+	//init each vector
+	D3DXVECTOR3 eye_vector		= D3DXVECTOR3( pfEyeVec[AxisX], pfEyeVec[AxisY], pfEyeVec[AxisZ] );
+	D3DXVECTOR3 lookat_vector	= D3DXVECTOR3( pfLookVec[AxisX], pfLookVec[AxisY], pfLookVec[AxisZ] );
+	D3DXVECTOR3 up_vector		= D3DXVECTOR3( pfUpVec[AxisX], pfUpVec[AxisY], pfUpVec[AxisZ] );
+	D3DXMATRIX view_matrix;
+
+	//Get final vector
+	D3DXMatrixLookAtLH(&view_matrix,&eye_vector,
+									&lookat_vector,
+									&up_vector);
+
+	//Set d3d view
+	m_lpDev->SetTransform(D3DTS_VIEW,&view_matrix);
+
+	return RIGHT_D3D_CAMERA;
+}
+
 
 //lys added end
 /////////////////////////////////////////////////////////////////////////////////////////////////

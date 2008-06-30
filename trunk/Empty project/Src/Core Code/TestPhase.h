@@ -17,9 +17,10 @@ public:
 	bool Leave( void );
 	bool Enter( void );
 	void RealTimeLogic(void);
-
+	void KeyDown( const WPARAM &wKey );
+	void LogicKeyDown();
 
 
 private:
-	void* m_pTestPrimitive;
+	vector<void*> m_vec_pTestPrimitive;
 };

@@ -13,7 +13,6 @@
 #include <string>
 #include "Object.h"
 #include "../Graphics/GameGraphics.h"
-//#include <d3d9.h>
 
 using namespace std;
 

@@ -66,10 +66,12 @@ enum GraphicsError
 	ERR_D3D_SHAPE,			//D3D作图失败
 	ERR_CREATE_BUFFER,		//创建定点buffer失败
 	ERR_LOCK_BUFFER,		//锁定定点buffer失败
+	ERR_D3D_CAMERA,			//Camera setting error
 
-	RIGHT_D3D_SHAPE,		//
+	RIGHT_D3D_SHAPE,		
 	RIGHT_CREATE_BUFFER,
 	RIGHT_LOCK_BUFFER,
+	RIGHT_D3D_CAMERA,
 	//ly's added end
 
 	ERR_NO

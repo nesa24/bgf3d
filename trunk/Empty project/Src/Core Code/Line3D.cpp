@@ -40,6 +40,23 @@ void Line3D::UpdateVertexBuffer()
 	g_pCanvas->GetGraphics()->UpdateVertexBuffer( TempVertex, m_pVertexBuffer, sizeof(TempVertex) );
 }
 
+//set rotating reference
+void  Line3D::SetRot( int iAxisFlag, float fRotation )
+{
+	if( iAxisFlag < 3 && iAxisFlag >= 0 )
+	{
+		m_pfRot[iAxisFlag] = fRotation;
+	}
+}
+//set Position reference
+void  Line3D::SetPos( int iAxisFlag, float fPosition )
+{
+	if( iAxisFlag < 3 && iAxisFlag >= 0 )
+	{
+		m_pfPos[iAxisFlag] = fPosition;
+	}
+}
+
 //Primitive type
 ShapeType Line3D::GetShapeType()
 {

@@ -217,16 +217,16 @@ GraphicsError CGameGraphics::UnlockSurface( const int iID )
 GraphicsError CGameGraphics::Draw2DShape( ShapeType theType, void* pVertexBuffer, int iPrimitiveNumber)
 {
 	//Write Error Report
-	sprintf( g_strError_Report_Buffer, "UnlockSurface()" );
+	sprintf( g_strError_Report_Buffer, "Draw2DShape()" );
 	//
 	return ERR_VIRTUAL;
 
 }
 
-GraphicsError CGameGraphics::Draw3DShape( ShapeType theType, void* pVertexBuffer, int iPrimitiveNumber, float* fRotate )
+GraphicsError CGameGraphics::Draw3DShape( ShapeType theType, void* pVertexBuffer, int iPrimitiveNumber )
 {
 	//Write Error Report
-	sprintf( g_strError_Report_Buffer, "UnlockSurface()" );
+	sprintf( g_strError_Report_Buffer, "Draw3DShape()" );
 	//
 	return ERR_VIRTUAL;
 
@@ -235,7 +235,7 @@ GraphicsError CGameGraphics::Draw3DShape( ShapeType theType, void* pVertexBuffer
 GraphicsError CGameGraphics::CreateVertexBuffer( void** ppBuffer, int iBufferSize, bool b2DBuffer)
 {
 	//Write Error Report
-	sprintf( g_strError_Report_Buffer, "UnlockSurface()" );
+	sprintf( g_strError_Report_Buffer, "CreateVertexBuffer()" );
 	//
 	return ERR_VIRTUAL;
 }
@@ -243,11 +243,29 @@ GraphicsError CGameGraphics::CreateVertexBuffer( void** ppBuffer, int iBufferSiz
 GraphicsError CGameGraphics::UpdateVertexBuffer( void* pVertex, void* pBuffer, size_t Size )
 {
 	//Write Error Report
-	sprintf( g_strError_Report_Buffer, "UnlockSurface()" );
+	sprintf( g_strError_Report_Buffer, "UpdateVertexBuffer()" );
 	//
 	return ERR_VIRTUAL;
 }
 
+GraphicsError CGameGraphics::PrimitiveTranslate( float* pfRotate, float* pfPosition )
+{
+	//Write Error Report
+	sprintf( g_strError_Report_Buffer, "PrimitiveRotate()" );
+	//
+	return ERR_VIRTUAL;
+
+}
+
+
+GraphicsError CGameGraphics::SetCamera( float* pfEyeVec, float* pfLookVec, float* pfUpVec )
+{
+	//Write Error Report
+	sprintf( g_strError_Report_Buffer, "SetCamera()" );
+	//
+	return ERR_VIRTUAL;
+
+}
 
 
 //ly's adde end

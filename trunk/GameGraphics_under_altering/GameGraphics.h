@@ -39,6 +39,16 @@ enum ShapeType
 	ShapeNbr
 };
 
+enum Dirt3D
+{
+	AxisX = 0,
+	AxisY,
+	AxisZ,
+
+	//Number of items
+	NbrOfDimension
+};
+
 // This class is exported from the GameGraphics.dll
 class GAMEGRAPHICS_API CGameGraphics {
 public:
@@ -126,11 +136,20 @@ public:
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//ly's added
+	//Primitive present
 	virtual GraphicsError Draw2DShape( ShapeType theType, void* pVertexBuffer, int iPrimitiveNumber );
-	virtual GraphicsError Draw3DShape( ShapeType theType, void* pVertexBuffer, int iPrimitiveNumber, float* fRotate );
+	virtual GraphicsError Draw3DShape( ShapeType theType, void* pVertexBuffer, int iPrimitiveNumber );
+
+	//vertix buffer control
 	virtual GraphicsError CreateVertexBuffer( void** ppBuffer, int iBufferSize, bool b2DBuffer);
 	virtual GraphicsError UpdateVertexBuffer( void* pVertex, void* pBuffer, size_t Size );
 	virtual void ReleaseVertexBuffer( void* pBuffer ) = 0;
+
+	//primitive control
+	virtual GraphicsError PrimitiveTranslate( float* pfRotate, float* pfPosition );
+
+	//camera control
+	virtual GraphicsError SetCamera( float* pfEyeVec, float* pfLookVec, float* pfUpVec );
 	//ly's adde end
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
