@@ -1,0 +1,568 @@
+<?xml version="1.0" encoding="gb2312"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="7.10"
+	Name="CCgame"
+	ProjectGUID="{58F5A557-0A4D-4B93-99F2-E39880DD5611}"
+	Keyword="Win32Proj">
+	<Platforms>
+		<Platform
+			Name="Win32"/>
+	</Platforms>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			OutputDirectory="bin"
+			IntermediateDirectory="Debug"
+			ConfigurationType="1"
+			CharacterSet="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories="Include\xtrace;Include\luabind\include"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
+				MinimalRebuild="TRUE"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="5"
+				RuntimeTypeInfo="TRUE"
+				UsePrecompiledHeader="2"
+				WarningLevel="3"
+				Detect64BitPortabilityProblems="TRUE"
+				DebugInformationFormat="3"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				OutputFile="$(OutDir)/CCgame.exe"
+				LinkIncremental="2"
+				GenerateDebugInformation="TRUE"
+				ProgramDatabaseFile="$(OutDir)/CCgame.pdb"
+				SubSystem="2"
+				TargetMachine="1"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory="Release"
+			IntermediateDirectory="Release"
+			ConfigurationType="1"
+			CharacterSet="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS"
+				RuntimeLibrary="4"
+				RuntimeTypeInfo="TRUE"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				Detect64BitPortabilityProblems="TRUE"
+				DebugInformationFormat="3"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="lua5.lib lualib5.lib"
+				OutputFile="$(OutDir)/CCgame.exe"
+				LinkIncremental="1"
+				IgnoreDefaultLibraryNames=""
+				GenerateDebugInformation="TRUE"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				TargetMachine="1"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<Filter
+			Name="Source Files"
+			Filter="cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx"
+			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}">
+			<File
+				RelativePath=".\Src\Core Code\Camecore.cpp">
+			</File>
+			<File
+				RelativePath=".\Src\Core Code\StdAfx.cpp">
+			</File>
+		</Filter>
+		<Filter
+			Name="Header Files"
+			Filter="h;hpp;hxx;hm;inl;inc;xsd"
+			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}">
+			<File
+				RelativePath=".\Src\Core Code\Singleton.h">
+			</File>
+			<File
+				RelativePath=".\Src\Core Code\StdAfx.h">
+			</File>
+			<File
+				RelativePath=".\Src\Core Code\Structure.h">
+			</File>
+			<File
+				RelativePath=".\Src\Core Code\typedefs.h">
+			</File>
+		</Filter>
+		<Filter
+			Name="Object"
+			Filter="">
+			<File
+				RelativePath=".\Src\Core Code\CallHit.h">
+			</File>
+			<File
+				RelativePath=".\Src\Core Code\Object.cpp">
+			</File>
+			<File
+				RelativePath=".\Src\Core Code\Object.h">
+			</File>
+			<Filter
+				Name="Panel"
+				Filter="">
+				<Filter
+					Name="Header"
+					Filter="">
+					<File
+						RelativePath=".\Src\Core Code\Panel.h">
+					</File>
+				</Filter>
+				<Filter
+					Name="Source"
+					Filter="">
+					<File
+						RelativePath=".\Src\Core Code\Panel.cpp">
+					</File>
+				</Filter>
+			</Filter>
+			<Filter
+				Name="UI"
+				Filter="">
+				<Filter
+					Name="Header"
+					Filter="">
+					<File
+						RelativePath=".\Src\Core Code\Button.h">
+					</File>
+					<File
+						RelativePath=".\Src\Core Code\EditBox.h">
+					</File>
+					<File
+						RelativePath=".\Src\Core Code\Image.h">
+					</File>
+					<File
+						RelativePath=".\Src\Core Code\ObjUI.h">
+					</File>
+					<File
+						RelativePath=".\Src\Core Code\TextBox.h">
+					</File>
+				</Filter>
+				<Filter
+					Name="Source"
+					Filter="">
+					<File
+						RelativePath=".\Src\Core Code\Button.cpp">
+					</File>
+					<File
+						RelativePath=".\Src\Core Code\EditBox.cpp">
+					</File>
+					<File
+						RelativePath=".\Src\Core Code\TextBox.cpp">
+					</File>
+				</Filter>
+			</Filter>
+			<Filter
+				Name="Sprite"
+				Filter="">
+				<Filter
+					Name="Header"
+					Filter="">
+					<File
+						RelativePath=".\Src\Core Code\Sprite.h">
+					</File>
+				</Filter>
+				<Filter
+					Name="Source"
+					Filter="">
+					<File
+						RelativePath=".\Src\Core Code\Sprite.cpp">
+					</File>
+				</Filter>
+			</Filter>
+			<Filter
+				Name="Shape"
+				Filter="">
+				<Filter
+					Name="Header"
+					Filter="">
+					<File
+						RelativePath=".\Src\Core Code\CombinedPrimitive3D.h">
+					</File>
+					<File
+						RelativePath=".\Src\Core Code\Line2D.h">
+					</File>
+					<File
+						RelativePath=".\Src\Core Code\Line3D.h">
+					</File>
+					<File
+						RelativePath=".\Src\Core Code\Point2D.h">
+					</File>
+					<File
+						RelativePath=".\Src\Core Code\Shape.h">
+					</File>
+					<File
+						RelativePath=".\Src\Core Code\TriangleStrip2D.h">
+					</File>
+					<File
+						RelativePath=".\Src\Core Code\TriangleStrip3D.h">
+					</File>
+				</Filter>
+				<Filter
+					Name="Source"
+					Filter="">
+					<File
+						RelativePath=".\Src\Core Code\CombinedPrimitive3D.cpp">
+					</File>
+					<File
+						RelativePath=".\Src\Core Code\Line2D.cpp">
+					</File>
+					<File
+						RelativePath=".\Src\Core Code\Line3D.cpp">
+					</File>
+					<File
+						RelativePath=".\Src\Core Code\Point2D.cpp">
+					</File>
+					<File
+						RelativePath=".\Src\Core Code\Shape.cpp">
+					</File>
+					<File
+						RelativePath=".\Src\Core Code\TriangleStrip2D.cpp">
+					</File>
+					<File
+						RelativePath=".\Src\Core Code\TriangleStrip3D.cpp">
+					</File>
+				</Filter>
+			</Filter>
+			<Filter
+				Name="Expack"
+				Filter="">
+				<Filter
+					Name="Header"
+					Filter="">
+					<File
+						RelativePath=".\Src\Core Code\Expack.h">
+					</File>
+					<File
+						RelativePath=".\Src\Core Code\PhysicsPack2D.h">
+					</File>
+				</Filter>
+				<Filter
+					Name="Source"
+					Filter="">
+					<File
+						RelativePath=".\Src\Core Code\Expack.cpp">
+					</File>
+					<File
+						RelativePath=".\Src\Core Code\PhysicsPack2D.cpp">
+					</File>
+				</Filter>
+			</Filter>
+		</Filter>
+		<Filter
+			Name="Phase"
+			Filter="">
+			<Filter
+				Name="Header"
+				Filter="">
+				<File
+					RelativePath=".\Src\Core Code\Phase.h">
+				</File>
+				<File
+					RelativePath=".\Src\Core Code\PhaseManager.h">
+				</File>
+				<File
+					RelativePath=".\Src\Core Code\TestPhase.h">
+				</File>
+			</Filter>
+			<Filter
+				Name="Source"
+				Filter="">
+				<File
+					RelativePath=".\Src\Core Code\Phase.cpp">
+				</File>
+				<File
+					RelativePath=".\Src\Core Code\PhaseManager.cpp">
+				</File>
+				<File
+					RelativePath=".\Src\Core Code\TestPhase.cpp">
+				</File>
+			</Filter>
+		</Filter>
+		<Filter
+			Name="xTrace"
+			Filter="">
+			<File
+				RelativePath=".\Src\Core Code\test.cpp">
+			</File>
+			<File
+				RelativePath=".\Src\Core Code\test.h">
+			</File>
+		</Filter>
+		<Filter
+			Name="Action"
+			Filter="">
+			<Filter
+				Name="Header"
+				Filter="">
+				<File
+					RelativePath=".\Src\Core Code\ActionModule.h">
+				</File>
+				<File
+					RelativePath=".\Src\Core Code\ActionTypes.h">
+				</File>
+			</Filter>
+			<Filter
+				Name="Source"
+				Filter="">
+				<File
+					RelativePath=".\Src\Core Code\ActionModule.cpp">
+				</File>
+				<File
+					RelativePath=".\Src\Core Code\ActionTypes.cpp">
+				</File>
+			</Filter>
+		</Filter>
+		<Filter
+			Name="Factory"
+			Filter="">
+			<Filter
+				Name="Header"
+				Filter="">
+				<File
+					RelativePath=".\Src\Core Code\GeneralFactory.h">
+				</File>
+				<File
+					RelativePath=".\Src\Core Code\ObjectFactory.h">
+				</File>
+				<File
+					RelativePath=".\Src\Core Code\PhaseFactory.h">
+				</File>
+			</Filter>
+			<Filter
+				Name="Source"
+				Filter="">
+				<File
+					RelativePath=".\Src\Core Code\GeneralFactory.cpp">
+				</File>
+				<File
+					RelativePath=".\Src\Core Code\ObjectFactory.cpp">
+				</File>
+				<File
+					RelativePath=".\Src\Core Code\PhaseFactory.cpp">
+				</File>
+			</Filter>
+		</Filter>
+		<Filter
+			Name="Global"
+			Filter="">
+			<Filter
+				Name="Header"
+				Filter="">
+				<File
+					RelativePath=".\Src\Core Code\ConstStuff.h">
+				</File>
+				<File
+					RelativePath=".\Src\Core Code\Enumerate.h">
+				</File>
+				<File
+					RelativePath=".\Src\Core Code\GlobalFuns.h">
+				</File>
+				<File
+					RelativePath=".\Src\Core Code\GlobalStuff.h">
+				</File>
+			</Filter>
+			<Filter
+				Name="Source"
+				Filter="">
+				<File
+					RelativePath=".\Src\Core Code\GlobalFuns.cpp">
+				</File>
+				<File
+					RelativePath=".\Src\Core Code\GlobalObjects.cpp">
+				</File>
+			</Filter>
+		</Filter>
+		<Filter
+			Name="Graphics"
+			Filter="">
+			<Filter
+				Name="Header"
+				Filter="">
+				<File
+					RelativePath=".\Src\Core Code\Camera.h">
+				</File>
+				<File
+					RelativePath=".\Src\Core Code\Canvas.h">
+				</File>
+				<File
+					RelativePath=".\Src\Core Code\DrawComponent.h">
+				</File>
+				<File
+					RelativePath=".\Src\Graphics\GameGraphics.h">
+				</File>
+				<File
+					RelativePath=".\Src\Graphics\GrahicsErr.h">
+				</File>
+				<File
+					RelativePath=".\Src\Graphics\GraphicsFuns.h">
+				</File>
+			</Filter>
+			<Filter
+				Name="Source"
+				Filter="">
+				<File
+					RelativePath=".\Src\Core Code\Camera.cpp">
+				</File>
+				<File
+					RelativePath=".\Src\Core Code\Canvas.cpp">
+				</File>
+				<File
+					RelativePath=".\Src\Core Code\DrawComponent.cpp">
+				</File>
+			</Filter>
+		</Filter>
+		<Filter
+			Name="lua"
+			Filter="">
+			<File
+				RelativePath=".\Src\Core Code\bindToLua.cpp">
+			</File>
+			<Filter
+				Name="lua file"
+				Filter="">
+				<File
+					RelativePath=".\Res\Script\function.lua">
+				</File>
+				<File
+					RelativePath=".\Res\Script\global.lua">
+				</File>
+				<File
+					RelativePath=".\Res\Script\loader.lua">
+				</File>
+				<File
+					RelativePath=".\Res\Script\main.lua">
+				</File>
+				<File
+					RelativePath=".\Res\Script\object.lua">
+				</File>
+				<File
+					RelativePath=".\Res\Script\panel.lua">
+				</File>
+				<File
+					RelativePath=".\Res\Script\phase.lua">
+				</File>
+				<File
+					RelativePath=".\Res\Script\picRes.lua">
+				</File>
+				<File
+					RelativePath=".\Res\Script\wavRes.lua">
+				</File>
+			</Filter>
+		</Filter>
+		<Filter
+			Name="Audio"
+			Filter="">
+			<Filter
+				Name="Header"
+				Filter="">
+				<File
+					RelativePath=".\Src\Core Code\Audio.h">
+				</File>
+				<File
+					RelativePath=".\Src\Audio\AudioErr.h">
+				</File>
+				<File
+					RelativePath=".\Src\Audio\AudioFuns.h">
+				</File>
+				<File
+					RelativePath=".\Src\Audio\GameAudio.h">
+				</File>
+			</Filter>
+			<Filter
+				Name="Source"
+				Filter="">
+				<File
+					RelativePath=".\Src\Core Code\Audio.cpp">
+				</File>
+			</Filter>
+		</Filter>
+		<Filter
+			Name="GeneralModule"
+			Filter="">
+			<Filter
+				Name="Header"
+				Filter="">
+				<File
+					RelativePath=".\Src\Core Code\PhysicsModule.h">
+				</File>
+			</Filter>
+			<Filter
+				Name="Source"
+				Filter="">
+				<File
+					RelativePath=".\Src\Core Code\PhysicsModule.cpp">
+				</File>
+			</Filter>
+		</Filter>
+		<File
+			RelativePath=".\Src\Audio\GameAudio.lib">
+		</File>
+		<File
+			RelativePath=".\Src\Graphics\GameGraphics.lib">
+		</File>
+		<File
+			RelativePath=".\Lib\luabindlib_debug.lib">
+		</File>
+		<File
+			RelativePath=".\Lib\luabindlib_release.lib">
+		</File>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>
