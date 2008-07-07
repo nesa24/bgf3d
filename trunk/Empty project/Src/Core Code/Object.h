@@ -31,9 +31,10 @@
 #include <windows.h>
 #include <vector>
 #include <string>
+#include <assert.h>
 #include "Enumerate.h"
 #include "Structure.h"
-#include <assert.h>
+#include "Expack.h"
 
 using std::string;
 
@@ -463,6 +464,7 @@ public:
 	{
 		m_vecPicLocation[m_indexCurrentPic] = pic;
 	}
+
 protected:
 	///	Object enable or not, may special for UI elements
 	bool		m_bEnable;
@@ -498,13 +500,23 @@ protected:
 	string		m_strFocusFunc;
 	/// string holds function name for lose focus
 	string		m_strLoseFocusFunc;
-private:
+
+	//the head of Expack series
+	Expack* m_pFirstPack;
 public:
 	/** draw the object on the canvas
 	*   kyo's Added
 	*/
 	virtual bool Draw(Canvas* pCanvas);
 	virtual void LogicKeyDown();
+public:
+	/** Other methods
+	*   ly's Added
+	*/
+	inline Expack* GetExPack(void)
+	{
+		return m_pFirstPack;
+	};
 };
 
 #endif

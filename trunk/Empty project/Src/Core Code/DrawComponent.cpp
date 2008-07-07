@@ -51,7 +51,7 @@ int DrawBasic::Draw( Object* pObj, const Canvas* pCan )
 		pShape = (Shape*)pObj;
 		if( pShape->Is3DShape() )
 		{
-			//Shape rotation
+			//Shape rotation and position translate
 			pCan->GetGraphics()->PrimitiveTranslate( pShape->GetRotationSet(), pShape->GetPosition() );
 			//draw 3D shape
 			pCan->GetGraphics()->Draw3DShape( pShape->GetShapeType(), pShape->GetVertexBuffer(), pShape->GetPrimitiveNbr() );

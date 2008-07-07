@@ -40,5 +40,4 @@ public:
 
 private:
 	vector<POINT3D> m_vec_PosList;
-	DWORD m_Color;
 };

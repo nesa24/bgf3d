@@ -3,6 +3,7 @@
 Shape::Shape(void)
 {
 	m_iPrimitiveNbr = 0;
+	m_iVertexNumber = 0;
 	m_pVertexBuffer = NULL;
 
 	m_pfRot[0] = 0;

@@ -1,11 +1,15 @@
 #include "camera.h"
 #include "stdafx.h"
 
+//const values
+const float fZoomInRestrict = 0.3f;
+const float fDefaultCameraPos[3] = {0.0, 3.0, -5.5};
+
 Camera::Camera(void)
 {
-	m_fCameraDistance = 1.0;
-	m_fZoomStep		  = 0.02;
-	m_pGraphics = NULL;
+	m_fCameraDistance = 1.0f;
+	m_fZoomStep		  = 0.01f;
+	m_pGraphics		  = NULL;
 }
 
 Camera::~Camera(void)
@@ -17,9 +21,12 @@ Camera::~Camera(void)
 //control funs
 void Camera::SetDefaultPosition()
 {
-	float fEyePos[3]  = {0.0, 3.0, -5.5};
+	//set defualt camera pos
+	float fEyePos[3]  = {fDefaultCameraPos[AxisX], fDefaultCameraPos[AxisY], fDefaultCameraPos[AxisZ]};
 	float fLookPos[3] = {0.0, 0.0, 0.0};
 	float fUpDrct[3]  = {0.0, 1.0, 0.0};
+	//set default distance proportion
+	m_fCameraDistance = 1.0;
 
 	memcpy( (void*)m_pfEyePos, (void*)fEyePos, sizeof(fEyePos) );
 	memcpy( (void*)m_pfLookPos, (void*)fLookPos, sizeof(fEyePos) );
@@ -50,38 +57,42 @@ bool Camera::InitCamera( CGameGraphics* pGraphics )
 
 void Camera::ZoomIn()
 {
-	float fZoomingUnit = 0.0;
+	//zooming restrict
+	if( m_fCameraDistance < fZoomInRestrict )
+		return;
 
-	for( int i = 0; i < 3; ++i )
-	{
+	float fZoomingUnit[3];
+	int i = 0;
+
+	for( i = 0; i < 3; ++i )
 		//Get zooming unit
-		fZoomingUnit = m_pfEyePos[i] / m_fCameraDistance;
+		fZoomingUnit[i] = m_pfEyePos[i] / m_fCameraDistance;
 
-		//Update New camera distance
-		m_fCameraDistance -= m_fZoomStep;
+	//Update New camera distance
+	m_fCameraDistance -= m_fZoomStep;
 
+	for( i = 0; i < 3; ++i )
 		//Update camera position
-		m_pfEyePos[i] = fZoomingUnit * m_fCameraDistance;
-	}
+		m_pfEyePos[i] = fZoomingUnit[i] * m_fCameraDistance;
 
 	UpdateCamera();
 }
 
 void Camera::ZoomOut()
 {
-	float fZoomingUnit = 0.0;
+	float fZoomingUnit[3];
+	int i = 0;
 
-	for( int i = 0; i < 3; ++i )
-	{
+	for( i = 0; i < 3; ++i )
 		//Get zooming unit
-		fZoomingUnit = m_pfEyePos[i] / m_fCameraDistance;
+		fZoomingUnit[i] = m_pfEyePos[i] / m_fCameraDistance;
 
-		//Update New camera distance
-		m_fCameraDistance += m_fZoomStep;
+	//Update New camera distance
+	m_fCameraDistance += m_fZoomStep;
 
+	for( i = 0; i < 3; ++i )
 		//Update camera position
-		m_pfEyePos[i] = fZoomingUnit * m_fCameraDistance;
-	}
+		m_pfEyePos[i] = fZoomingUnit[i] * m_fCameraDistance;
 
 	UpdateCamera();
 }

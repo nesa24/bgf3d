@@ -49,8 +49,15 @@
 #include "Point2D.h"
 #include "TriangleStrip2D.h"
 #include "TriangleStrip3D.h"
+#include "CombinedPrimitive3D.h"
 
+//Object's external pack
+#include "Expack.h"
+#include "PhysicsPack2D.h"
+
+//General control module
 #include "ActionModule.h"
+#include "PhysicsModule.h"
 
 //Graphics
 #include "../Graphics/GraphicsFuns.h"

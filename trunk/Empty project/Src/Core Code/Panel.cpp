@@ -54,6 +54,9 @@ bool Panel::TidyObjects()
 
 bool Panel::AddObject( Object* pObject )
 {
+	if( NULL == pObject )
+		return false;
+
 	m_Objects.push_back( pObject );
 	return true;
 }
@@ -74,6 +77,7 @@ Panel::Panel(const char* pName, POINT PosLT, POINT PosSize)
 
 Panel::~Panel()
 {
+	ClearAll();
 }
 
 bool Panel::Init()
@@ -174,6 +178,11 @@ void Panel::MouseClickAt(const POINT &posMouse )
 		m_objFocusedObject = pObj.m_hitedObject;
 		pObj.m_hitedObject->MouseLClick();
 	}
+}
+
+void Panel::MouseMoveAt(const POINT &posMouse )
+{
+	//do nothing in base class
 }
 
 void Panel::KeyDown(const WPARAM &wKey )

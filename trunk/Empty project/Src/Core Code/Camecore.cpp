@@ -22,6 +22,7 @@ int APIENTRY WinMain(HINSTANCE hInstance,
  	// TODO: Place code here.
 	MSG msg;
 	HACCEL hAccelTable;
+	BOOL bGameQuite = FALSE;
 
 	//load global values
 	LoadGlobal();
@@ -42,13 +43,24 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 	GameInit();
 
 	// Main message loop:
-	while (GetMessage(&msg, NULL, 0, 0))
-	{
-		if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg)) 
+	while ( !bGameQuite )
+	{		
+		if ( PeekMessage(&msg, NULL, 0U, 0U, PM_REMOVE) ) 
 		{
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 		}
+		else
+		{
+			//graphics render
+			if ( g_pCanvas )
+			{
+				g_pCanvas->Render();
+			}
+		}
+
+		if( msg.message == WM_QUIT )
+			bGameQuite = TRUE;
 	}
 
 	return (int)msg.wParam;
@@ -135,6 +147,9 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 //  WM_DESTROY	- post a quit message and return
 //
 //
+const int TIMER_ID_GAME_BASIS  = 1;
+const int TIMER_FQT_GAME_BASIS = 20;
+
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	ActionModule &AM = singActionModule::instance();
@@ -142,7 +157,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	{
 	case WM_CREATE:
 		{
-			SetTimer( hWnd, 1, 20, NULL );
+			//set basic game timer
+			SetTimer( hWnd, TIMER_ID_GAME_BASIS, TIMER_FQT_GAME_BASIS, NULL );
 		}
 		break;
 	case WM_KEYDOWN:
@@ -165,19 +181,22 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		AM.Generate( MouseMove, wParam, lParam );
 		break;
 	case WM_TIMER:
+		switch( wParam )
 		{
+		case TIMER_ID_GAME_BASIS:
 			// action process
 			singActionModule::instance().Process();
-			//graphics render
-			if ( g_pCanvas )
-				g_pCanvas->Render();
 			//Real time game logic
-			singPhaseManager::instance().GetCurrentPhase()->LogicKeyDown();
 			singPhaseManager::instance().GetCurrentPhase()->RealTimeLogic();
+			singPhaseManager::instance().GetCurrentPhase()->LogicKeyDown();
 
 			//audio refresh
 			if ( g_pAudio )
 				g_pAudio->RefreshMusic();
+			break;
+
+		default:
+			break;
 		}
 		break;
 	case WM_DESTROY:

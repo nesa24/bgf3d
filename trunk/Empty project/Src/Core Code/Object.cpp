@@ -44,11 +44,15 @@ Object::Object( void )
 	m_indexCurrentPic = 0;
 	m_dwColor = 0xffffffff;
 
+	//init every object's first expack as base pack
+	m_pFirstPack = (Expack*)singFactory::instance().Create( "Expack_Base" );
+
 }
 //------------------------------------------------------------
 Object::~Object( void )
 {
-	// nothing here
+	//release Expacks
+	SAFE_DELETE( m_pFirstPack );
 }
 //------------------------------------------------------------
 void Object::SetBoolGroupByIndex( const int index, const bool &value )

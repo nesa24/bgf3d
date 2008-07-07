@@ -36,5 +36,4 @@ public:
 
 private:
 	POINT2D m_Pos;
-	DWORD m_Color;
 };

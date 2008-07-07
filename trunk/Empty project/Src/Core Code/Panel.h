@@ -62,6 +62,7 @@ public:
 	virtual ObjectType GetObjectType() const;
 	virtual void RealTimeLogic(void){/*Do nothing in the base class*/};
 	virtual void MouseClickAt( const POINT &posMouse );
+	virtual void MouseMoveAt( const POINT &posMouse );
 	virtual void KeyDown( const WPARAM &wKey );
 
 	void SetName( std::string strName );
@@ -70,10 +71,6 @@ public:
 	Panel( void );
 	Panel(const char* pName, POINT PosLT, POINT PosSize);
 	virtual ~Panel();
-
-	//deleted
-	//void SetInitVisible( bool Visible );
-	//void SetVisible( const bool Visible );
 
 	//Object Create fun
 	static Object *CreateObject( void );

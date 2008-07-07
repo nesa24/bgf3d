@@ -20,6 +20,7 @@ struct CustomVertex3D
 {
 	float x,y,z;
 	DWORD color;
+	float u,v;
 };
 
 //3D rhw primitive vertex
@@ -34,7 +35,9 @@ enum ShapeType
 	ShapePoint = 0,
 	ShapeLine,
 	ShapeTriangleStrip,
+	ShapeTriangleList,
 
+	ShapeVoid,
 	//shape number
 	ShapeNbr
 };

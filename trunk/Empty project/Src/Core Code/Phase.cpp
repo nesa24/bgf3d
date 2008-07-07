@@ -167,6 +167,21 @@ void Phase::MouseClickAt( const POINT &posMouse )
 		m_panFocusedPanel = (Panel*)pObj.m_hitedObject;
 	}
 }
+
+void Phase::MouseMoveAt( const POINT &posMouse )
+{
+	//*/
+	CallHit< Panel > pObj = for_each( m_Panels.begin(), m_Panels.end(), 
+		CallHit< Panel >( posMouse ) );
+	if (pObj.m_hitedObject)
+	{
+		pObj.m_hitedObject->MouseMoveAt( posMouse );
+
+		//process the panel focus
+		m_panFocusedPanel = (Panel*)pObj.m_hitedObject;
+	}
+	//*/
+}
 //--------------------------------------------------
 void Phase::KeyDown( const WPARAM &wKey )
 {

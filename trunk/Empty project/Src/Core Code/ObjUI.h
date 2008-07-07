@@ -10,9 +10,9 @@ class ObjUI : public Object
 {
 public:
 	~ObjUI( void ){};
-	virtual ClassType GetObjectType( void )
+	virtual ObjectType GetObjectType( void )
 	{
-		return TypeUI;
+		return ObjectUI;
 	}
 	static Object* CreateObject( void )
 	{
