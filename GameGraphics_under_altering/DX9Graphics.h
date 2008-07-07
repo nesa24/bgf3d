@@ -87,6 +87,7 @@ private:
 	GraphicsError DrawLine3D( IDirect3DVertexBuffer9* pVertexBuffer, int iPrimitiveNumber );
 	GraphicsError DrawPoint3D( IDirect3DVertexBuffer9* pVertexBuffer, int iPrimitiveNumber );
 	GraphicsError DrawTrianglestrip3D( IDirect3DVertexBuffer9* pVertexBuffer, int iPrimitiveNumber );
+	GraphicsError DrawTrianglelist3D( IDirect3DVertexBuffer9* pVertexBuffer, int iPrimitiveNumber );
 
 //ly's added end
 ///////////////////////////

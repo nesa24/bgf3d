@@ -8,7 +8,6 @@ Line3D::Line3D(void)
 	m_PosEnd.x = 0;
 	m_PosEnd.y = 0;
 	m_PosEnd.z = 0;
-	m_Color = 0xFFFFFFFF;
 
 	m_iPrimitiveNbr = iVertexNumberLine2D;
 }
@@ -30,10 +29,11 @@ void Line3D::UpdateVertexBuffer()
 {
 	//init vertex
 	//Create vertex according to position and color
+	const DWORD Color = GetColorDWORD();
 	CustomVertex3D TempVertex[2] = 
 	{
-		{ m_PosStart.x, m_PosStart.y, m_PosStart.z, m_Color },
-		{ m_PosEnd.x,   m_PosEnd.y,   m_PosEnd.z,   m_Color },
+		{ m_PosStart.x, m_PosStart.y, m_PosStart.z, Color },
+		{ m_PosEnd.x,   m_PosEnd.y,   m_PosEnd.z,   Color },
 	};
 
 	//update vertex buffer
@@ -82,7 +82,7 @@ void Line3D::UpdatePos( const POINT3D PS, const POINT3D PE )
 
 void Line3D::UpdateColor( const DWORD Color )
 {
-	m_Color = Color;
+	SetColorDWORD( Color );
 
 	//update vertex buffer after alter of color
 	UpdateVertexBuffer();

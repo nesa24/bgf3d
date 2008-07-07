@@ -22,6 +22,7 @@ public:
 	};
 
 
+
 	//method override
 	//different shape will have different method of creating vertex
 	void CreateVertexBuffer();
@@ -39,5 +40,4 @@ public:
 
 private:
 	vector<POINT2D> m_vec_PosList;
-	DWORD m_Color;
 };

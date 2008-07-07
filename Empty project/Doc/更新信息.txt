@@ -6,3 +6,6 @@
 
 2008-04-28 更新：
 Panel基类中重载的SetVisible(bool bVisible)函数取消，Panel的Visible效果通过重载Panel的Draw()函数来实现。
+
+2008-07-01 更新：
+将Render（）的调用放在了windows消息处理以外，提高图像桢数。

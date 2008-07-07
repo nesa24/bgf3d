@@ -38,5 +38,4 @@ public:
 private:
 	POINT2D m_PosStart;
 	POINT2D m_PosEnd;
-	DWORD m_Color;
 };

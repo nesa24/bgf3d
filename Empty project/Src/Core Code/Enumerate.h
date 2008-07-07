@@ -31,28 +31,6 @@
 //	Enum
 //------------------------------------------------------------
 
-/** @brief	type of classes
- */
-enum ClassType
-{
-	TypeObject = 0,
-	TypeUI,
-	TypeGameSpirit,
-	TypeChess,
-	TypeCard,
-	TypeChessBoard,
-	TypeButton,
-	TypeStaticImage,
-	TypeEditBox,
-	TypeRichEdit,
-	TypeStaticText,
-	TypeListBox,
-
-	TypePanel,
-
-	TypeSprite,
-};
-
 /*!
 * \enum ObjectType
 * \brief All Type of Objects
@@ -60,6 +38,7 @@ enum ClassType
 enum ObjectType
 {
 		ObjectBase = 0,
+		ObjectUI,
         ObjectButton,        
 		ObjectEditBox,
 		ObjectRichEditBox,

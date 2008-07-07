@@ -42,6 +42,4 @@ public:
 private:
 	POINT3D m_PosStart;
 	POINT3D m_PosEnd;
-	DWORD m_Color;
-
 };

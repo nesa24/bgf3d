@@ -147,15 +147,23 @@ ActMouseMove::~ActMouseMove( void )
 bool ActMouseMove::Do( void )
 {
 	Phase* ptrPhase = singPhaseManager::instance().GetCurrentPhase();
-//	assert( ptrPhase );
 
+	//update phase focused object
 	Panel* ptrPanel = ptrPhase->GetHitedPanel( m_posMouse );
 	if (!ptrPanel)
+	{
+		//release object if null panel selected
+		ptrPhase->ReleaseFocusObject();
 		return true;
+	}
 
 	Object* ptrObj = ptrPanel->GetHitedItem( m_posMouse );
 	if (!ptrObj)
+	{
+		//release object if null object selected
+		ptrPhase->ReleaseFocusObject();
 		return true;
+	}
 
 	Object* ptrFocus = ptrPhase->GetFocusObject();
 	if (ptrObj == ptrFocus)
@@ -168,8 +176,8 @@ bool ActMouseMove::Do( void )
 	}
 	else if (ptrObj && ptrFocus)
 	{
-		ptrObj->GetFocus();
 		ptrFocus->LoseFocus();
+		ptrObj->GetFocus();
 		ptrPhase->SetFocusObject( ptrObj );
 	}
 	return true;

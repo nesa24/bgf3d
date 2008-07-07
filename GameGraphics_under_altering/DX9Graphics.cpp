@@ -1226,6 +1226,8 @@ GraphicsError CDX9Graphics::Draw3DShape( ShapeType theType, void* pVertexBuffer,
 		return DrawLine3D( (IDirect3DVertexBuffer9*)pVertexBuffer, iPrimitiveNumber );
 	case ShapeTriangleStrip:
 		return DrawTrianglestrip3D( (IDirect3DVertexBuffer9*)pVertexBuffer, iPrimitiveNumber );
+	case ShapeTriangleList:
+		return DrawTrianglelist3D( (IDirect3DVertexBuffer9*)pVertexBuffer, iPrimitiveNumber );
 	default:
 		return ERR_D3D_SHAPE;
 	}
@@ -1380,6 +1382,18 @@ GraphicsError CDX9Graphics::DrawTrianglestrip3D( IDirect3DVertexBuffer9* pVertex
 	m_lpDev->SetStreamSource(0,pVertexBuffer,0,sizeof(CustomVertex3D));
 
 	m_lpDev->DrawPrimitive(D3DPT_TRIANGLESTRIP,0,iPrimitiveNumber);
+
+	return RIGHT_D3D_SHAPE;
+}
+
+//Draw shape triangle list 3D
+GraphicsError CDX9Graphics::DrawTrianglelist3D( IDirect3DVertexBuffer9* pVertexBuffer, int iPrimitiveNumber )
+{
+	m_lpDev->SetFVF( D3D9_CUSTOMVERTEX3D );
+
+	m_lpDev->SetStreamSource(0,pVertexBuffer,0,sizeof(CustomVertex3D));
+
+	m_lpDev->DrawPrimitive(D3DPT_TRIANGLELIST,0,iPrimitiveNumber);
 
 	return RIGHT_D3D_SHAPE;
 }

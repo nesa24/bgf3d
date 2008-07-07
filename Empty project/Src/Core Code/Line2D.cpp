@@ -6,7 +6,6 @@ Line2D::Line2D(void)
 	m_PosStart.y = 0;
 	m_PosEnd.x = 0;
 	m_PosEnd.y = 0;
-	m_Color = 0xFFFFFFFF;
 
 	m_iPrimitiveNbr = iVertexNumberLine2D;
 
@@ -32,11 +31,12 @@ void Line2D::UpdateVertexBuffer()
 	//init vertex
 	//Set the layer of the primitive as the layer of the object
 	const float fLayer = this->GetLayer() / 10000.0f;
+	const DWORD Color = GetColorDWORD();
 
 	//Create vertex according to position and color
 	CustomVertex2D TempVertex[2] = {
-		{ m_PosStart.x, m_PosStart.y, fLayer, 0.0f, m_Color },
-		{ m_PosEnd.x,   m_PosEnd.y,   fLayer, 0.0f, m_Color },
+		{ m_PosStart.x, m_PosStart.y, fLayer, 0.0f, Color },
+		{ m_PosEnd.x,   m_PosEnd.y,   fLayer, 0.0f, Color },
 	};
 
 	//update vertex buffer
@@ -68,7 +68,7 @@ void Line2D::UpdatePos( const POINT2D PS, const POINT2D PE )
 
 void Line2D::UpdateColor( const DWORD Color )
 {
-	m_Color = Color;
+	SetColorDWORD( Color );
 
 	//update vertex buffer after alter of color
 	UpdateVertexBuffer();

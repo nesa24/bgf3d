@@ -21,9 +21,11 @@
 #include <luabind/luabind.hpp> 
 #include <luabind/object.hpp> 
 
+
 void RegisterToFactory( void )
 {
 	ObjectFactory &OF = singObjectFactory::instance();
+	//2D objects
 	OF.Register( "Object", Object::CreateObject );
 	OF.Register( "Panel", Panel::CreateObject );
 	OF.Register( "StaticImage", Image::CreateObject );
@@ -31,13 +33,23 @@ void RegisterToFactory( void )
 	OF.Register( "EditBox", EditBox::CreateObject );	
 	OF.Register( "Button", ObjButton::CreateObject );
 
+	//D3D primitives
 	OF.Register( "Line2D", Line2D::CreateObject );
 	OF.Register( "Line3D", Line3D::CreateObject );
 	OF.Register( "Point2D", Point2D::CreateObject );
 	OF.Register( "TriangleStrip2D", TriangleStrip2D::CreateObject );
 	OF.Register( "TriangleStrip3D", TriangleStrip3D::CreateObject );
+	OF.Register( "CombinedPrimitive3D", CombinedPrimitive3D::CreateObject );
+
+	//External Packs
+	GeneralFactory &GF = singFactory::instance();
+	GF.Register( "Expack_Base", BasePack::CreatePack );
+	GF.Register( "Expack_Physics2D", PhysicsPack2D::CreatePack );
 
 
+
+
+	//Phases
 	PhaseFactory &PF = singPhaseFactory::instance();
 	PF.Register( "Phase", Phase::CreatePhase );
 	PF.Register( "TestPhase", TestPhase::CreatePhase );
