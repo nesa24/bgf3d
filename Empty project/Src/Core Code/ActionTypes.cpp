@@ -147,6 +147,8 @@ ActMouseMove::~ActMouseMove( void )
 bool ActMouseMove::Do( void )
 {
 	Phase* ptrPhase = singPhaseManager::instance().GetCurrentPhase();
+	//calling mouse move funs
+	ptrPhase->MouseMoveAt( m_posMouse );
 
 	//update phase focused object
 	Panel* ptrPanel = ptrPhase->GetHitedPanel( m_posMouse );
@@ -166,7 +168,11 @@ bool ActMouseMove::Do( void )
 	}
 
 	Object* ptrFocus = ptrPhase->GetFocusObject();
+	//focus on same object, return
 	if (ptrObj == ptrFocus)
+		return true;
+	//object unfocusable, return
+	if( !ptrObj->GetFocusable() )
 		return true;
 
 	if (ptrObj && !ptrFocus)

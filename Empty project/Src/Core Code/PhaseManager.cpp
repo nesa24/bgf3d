@@ -27,10 +27,14 @@ PhaseManager::~PhaseManager( void )
 //--------------------------------------------------
 bool PhaseManager::ChangeToPhase( const char* strPhase )
 {
+	Phase* pPhaseToGo = GetThePhase( strPhase );
+	if( NULL == pPhaseToGo || m_CurrentPhase == pPhaseToGo )
+		return false;
+
 	bool _return = false;
 	if (m_CurrentPhase->Leave())
 	{
-		m_CurrentPhase = GetThePhase( strPhase );
+		m_CurrentPhase = pPhaseToGo;
 
 		_return = m_CurrentPhase->Enter();
 	}

@@ -35,11 +35,14 @@ Object::Object( void )
 	memset( m_BaseBoolGroup, 0, sizeof(m_BaseBoolGroup) );
 
 	m_bVisible = true;
+	m_bFocusable = true;
 	m_fXScale = 1;
 	m_fYScale = 1;
 	m_iAngle = 0;
-	m_posLT.x = -240;
-	m_posLT.y = -240;
+	m_posLT.x = 0;
+	m_posLT.y = 0;
+	m_Size.x = 0;
+	m_Size.y = 0;
 	m_uiLayer = 0;
 	m_indexCurrentPic = 0;
 	m_dwColor = 0xffffffff;
@@ -53,6 +56,9 @@ Object::~Object( void )
 {
 	//release Expacks
 	SAFE_DELETE( m_pFirstPack );
+
+	//remove object for object linker
+	singObjectLinker::instance().RemoveObject( this );
 }
 //------------------------------------------------------------
 void Object::SetBoolGroupByIndex( const int index, const bool &value )
@@ -147,6 +153,11 @@ void Object::SetSize( const POINT &Size )
 void Object::SetVisible( const bool bVisible )
 {
 	m_bVisible = bVisible;
+}
+//------------------------------------------------------------
+void Object::SetFocusable( const bool bFocusable )
+{
+	m_bFocusable = bFocusable;
 }
 //------------------------------------------------------------
 void Object::SetXScale( const float &fXScale )

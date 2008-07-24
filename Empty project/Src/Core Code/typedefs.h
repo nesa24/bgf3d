@@ -7,7 +7,7 @@
 #include "PhaseFactory.h"
 #include "GeneralFactory.h"
 #include "PhaseManager.h"
-
+#include "ObjectLinker.h"
 #include "DrawComponent.h"
 #include "Camera.h"
 #include "PhysicsModule.h"
@@ -22,6 +22,7 @@ typedef Singleton< PhaseFactory >		singPhaseFactory;
 typedef Singleton< GeneralFactory >		singFactory;
 typedef Singleton< PhaseManager >		singPhaseManager;
 typedef Singleton< Camera >				singCamera;
+typedef Singleton< ObjectLinker >		singObjectLinker;
 typedef Singleton< PhysicsModule >		singPhysicsModule;
 
 /************************************************************************/
