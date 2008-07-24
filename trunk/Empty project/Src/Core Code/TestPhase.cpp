@@ -34,7 +34,7 @@ bool TestPhase::Enter( void )
 
 
 	//*triangle strip test
-	int iside = 30;
+	int iside = 300;
 	POINT2D posTri = {320, 10};
 	pObj = singObjectFactory::instance().Create( "TriangleStrip2D" );
 	TriangleStrip2D* pTriangleStrip = (TriangleStrip2D*)pObj;
@@ -45,7 +45,28 @@ bool TestPhase::Enter( void )
 		{posTri.x+iside, posTri.y+iside},
 	};
 	pTriangleStrip->CreateVertexBuffer();
-	pTriangleStrip->UpdateColor( 0xFFAAAAAA );
+	pTriangleStrip->UpdateColor( 0x66AAAAAA );
+	pTriangleStrip->UpdatePos( Pos, 4 );
+	POINT tempPos = {1,1};
+	POINT tempPos2 = {400,400};
+	pTriangleStrip->SetPosLT(tempPos);
+	pTriangleStrip->SetSize(tempPos2);
+	this->GetPanel( "panelDefault" )->AddObject( pObj );
+	//*/
+	{
+	/*triangle strip test
+	int iside = 300;
+	POINT2D posTri = {320, 120};
+	pObj = singObjectFactory::instance().Create( "TriangleStrip2D" );
+	TriangleStrip2D* pTriangleStrip = (TriangleStrip2D*)pObj;
+	POINT2D Pos[4] = {
+		{posTri.x, posTri.y},
+		{posTri.x+iside, posTri.y},
+		{posTri.x, posTri.y+iside},
+		{posTri.x+iside, posTri.y+iside},
+	};
+	pTriangleStrip->CreateVertexBuffer();
+	pTriangleStrip->UpdateColor( 0xAA00AAAA );
 	pTriangleStrip->UpdatePos( Pos, 4 );
 	POINT tempPos = {1,1};
 	POINT tempPos2 = {400,400};
@@ -54,6 +75,7 @@ bool TestPhase::Enter( void )
 
 	this->GetPanel( "panelDefault" )->AddObject( pObj );
 	//*/
+	}
 
 	//3D line test
 	{

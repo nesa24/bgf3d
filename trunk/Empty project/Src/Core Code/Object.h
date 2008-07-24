@@ -158,6 +158,10 @@ public:
 	{
 		return m_bVisible;
 	}
+	inline const bool & GetFocusable( void ) const
+	{
+		return m_bFocusable;
+	}
 
 	/** @brief Set m_bVisible data member
 		@param	bVisible	true for visible, else false
@@ -166,6 +170,7 @@ public:
 		set this panel invisible, it must set all its child object to invisible.
 	 */
 	virtual void SetVisible( const bool bVisible );
+	virtual void SetFocusable( const bool bVisible );
 
 	/** @brief Get object draw layer
 	 */
@@ -470,6 +475,8 @@ protected:
 	bool		m_bEnable;
 	///	Object visible or not, for most of the objects
 	bool		m_bVisible;
+	///	Object focusable or not, for most of the objects
+	bool		m_bFocusable;
 	///	the layer of object, for graphics engine
 	unsigned int	m_uiLayer;
 	/// an index that holds the current picture of object

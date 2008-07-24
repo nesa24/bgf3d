@@ -539,12 +539,18 @@
 				Name="Header"
 				Filter="">
 				<File
+					RelativePath=".\Src\Core Code\ObjectLinker.h">
+				</File>
+				<File
 					RelativePath=".\Src\Core Code\PhysicsModule.h">
 				</File>
 			</Filter>
 			<Filter
 				Name="Source"
 				Filter="">
+				<File
+					RelativePath=".\Src\Core Code\ObjectLinker.cpp">
+				</File>
 				<File
 					RelativePath=".\Src\Core Code\PhysicsModule.cpp">
 				</File>
