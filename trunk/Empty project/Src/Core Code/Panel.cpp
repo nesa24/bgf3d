@@ -80,29 +80,9 @@ Panel::~Panel()
 	ClearAll();
 }
 
-bool Panel::Init()
-{
-	return true;
-}
-
-bool Panel::TryToSelect()
-{
-	return false;
-}
-
-bool Panel::InitPanelPic()
-{
-	return true;
-}
-
 list< Object* >& Panel::GetObjectList()
 {
 	return m_Objects;
-}
-
-bool Panel::PanelMove(POINT pos)
-{
-	return true;
 }
 
 bool Panel::ClearObject( Object* pObject )
@@ -191,6 +171,17 @@ void Panel::KeyDown(const WPARAM &wKey )
 		return;
 
 	m_objFocusedObject->KeyDown( wKey );
+}
+
+void Panel::RealTimeLogic(void)
+{
+	//suppose to run all RTL in all involved object
+	list<Object*>::iterator itr;
+	list<Object*>::iterator itr_end = m_Objects.end();
+	for ( itr = m_Objects.begin(); itr != itr_end; ++itr )
+	{
+		(*itr)->RealTimeLogic();
+	}
 }
 
 void Panel::ClearAll()

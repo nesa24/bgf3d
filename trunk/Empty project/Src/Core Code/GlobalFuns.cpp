@@ -27,11 +27,16 @@ void RegisterToFactory( void )
 	ObjectFactory &OF = singObjectFactory::instance();
 	//2D objects
 	OF.Register( "Object", Object::CreateObject );
-	OF.Register( "Panel", Panel::CreateObject );
+	//UI
 	OF.Register( "StaticImage", Image::CreateObject );
 	OF.Register( "StaticText", StaticText::CreateObject );
 	OF.Register( "EditBox", EditBox::CreateObject );	
 	OF.Register( "Button", ObjButton::CreateObject );
+	//Panels
+	OF.Register( "Panel", Panel::CreateObject );
+	OF.Register( "SquarePanel", SquarePanel::CreateObject );
+
+	//Sprites
 
 	//D3D primitives
 	OF.Register( "Line2D", Line2D::CreateObject );

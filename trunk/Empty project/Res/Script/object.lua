@@ -1,4 +1,4 @@
-newEditBox
+--[[newEditBox
 {
 	strType = 'EditBox',
 	strPhase = 'phLogin',
@@ -28,6 +28,7 @@ newEditBox
 	iBlue = 255,
 	bPassWord = false,
 };
+]]
 
 newObject
 {

@@ -162,12 +162,18 @@
 					<File
 						RelativePath=".\Src\Core Code\Panel.h">
 					</File>
+					<File
+						RelativePath=".\Src\Core Code\SquarePanel.h">
+					</File>
 				</Filter>
 				<Filter
 					Name="Source"
 					Filter="">
 					<File
 						RelativePath=".\Src\Core Code\Panel.cpp">
+					</File>
+					<File
+						RelativePath=".\Src\Core Code\SquarePanel.cpp">
 					</File>
 				</Filter>
 			</Filter>
@@ -274,14 +280,14 @@
 					<File
 						RelativePath=".\Src\Core Code\TriangleStrip2D.cpp">
 					</File>
-					<File
-						RelativePath=".\Src\Core Code\TriangleStrip3D.cpp">
-					</File>
 				</Filter>
 			</Filter>
 			<Filter
 				Name="Expack"
 				Filter="">
+				<File
+					RelativePath=".\Src\Core Code\TriangleStrip3D.cpp">
+				</File>
 				<Filter
 					Name="Header"
 					Filter="">

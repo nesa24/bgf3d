@@ -273,3 +273,8 @@ void Object::LogicKeyDown()
 {
 	//在这里添加有关按键的处理
 }
+//----------------RTL
+void Object::RealTimeLogic(void)
+{
+	//this function does nothing in the base class
+}
