@@ -423,6 +423,11 @@ public:
 	 */
 	virtual void KeyDown( const WPARAM &wKey );
 
+	/** @brief	method for RTL action
+	 */
+	virtual void RealTimeLogic(void);
+
+
 	/** @brief method for mouse in action
 		
 		this method is for mouse in action. While the mouse is in the object range,

@@ -37,9 +37,13 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 	}
 	hAccelTable = LoadAccelerators(hInstance, NULL);
 
+	//do object register at first place
 	RegisterToFactory();
 
+	//bind the registed stuff to LUA
 	bind2lua();
+
+	//Init game by LUA
 	GameInit();
 
 	// Main message loop:

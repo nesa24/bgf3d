@@ -43,37 +43,43 @@ using namespace std;
 class Panel : public Object  
 {
 public:
-	list< Object* >& GetObjectList();
-	bool PanelMove( POINT pos );
-	bool InitPanelPic();
-	bool TryToSelect();
-	bool Init();
-	bool Draw( Canvas* pCanvas );
-	void LogicKeyDown();
-	void CharInput( UINT nChar );
-	Object* GetHitedItem( const POINT &posMouse );
-
-	bool AddObject( Object* pObject );
-	bool ClearObject( Object* pObject );
-	bool TidyObjects();
-	void ClearAll();
-
-	virtual void MouseLClick(void){};
-	virtual ObjectType GetObjectType() const;
-	virtual void RealTimeLogic(void){/*Do nothing in the base class*/};
-	virtual void MouseClickAt( const POINT &posMouse );
-	virtual void MouseMoveAt( const POINT &posMouse );
-	virtual void KeyDown( const WPARAM &wKey );
-
-	void SetName( std::string strName );
-	std::string GetName( void );
-
 	Panel( void );
 	Panel(const char* pName, POINT PosLT, POINT PosSize);
 	virtual ~Panel();
 
 	//Object Create fun
 	static Object *CreateObject( void );
+
+	//override funs
+	bool Draw( Canvas* pCanvas );
+	void LogicKeyDown();
+	void CharInput( UINT nChar );
+	virtual void MouseLClick(void){};
+	virtual ObjectType GetObjectType() const;
+	virtual void RealTimeLogic(void);
+	virtual void MouseClickAt( const POINT &posMouse );
+	virtual void MouseMoveAt( const POINT &posMouse );
+	virtual void KeyDown( const WPARAM &wKey );
+
+	//Unique virtual funs
+	virtual void SetPanelPosLT( const POINT &PosLT ){ SetPosLT( PosLT); };
+	virtual void SetPanelColour( const DWORD Colour ){ SetColorDWORD( Colour ); };
+	virtual void SetPanelSize( const POINT &Size ) { SetSize( Size ); };
+
+	//unique tool funs
+	bool AddObject( Object* pObject );
+	bool ClearObject( Object* pObject );
+	bool TidyObjects();
+	void ClearAll();
+	Object* GetHitedItem( const POINT &posMouse );
+
+
+	//data access
+	void SetName( std::string strName );
+	std::string GetName( void );
+	list< Object* >& GetObjectList();
+
+
 
 protected:
 	std::string m_strName;

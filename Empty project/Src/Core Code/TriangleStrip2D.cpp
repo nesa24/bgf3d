@@ -41,7 +41,7 @@ void TriangleStrip2D::UpdateVertexBuffer()
 	{
 		TempVertex.x = m_vec_PosList[i].x;
 		TempVertex.y = m_vec_PosList[i].y;
-		TempVertex.color = GetColorDWORD();
+		TempVertex.color = m_vec_PosList[i].color;
 
 		vec_TempVertex.push_back( TempVertex );
 	}
@@ -65,7 +65,7 @@ bool TriangleStrip2D::Is3DShape()
 
 /////////////////////////////////////////////////////////////////
 //unique method
-void TriangleStrip2D::UpdatePos( POINT2D* pVertexes, const unsigned int iVertexNbr )
+void TriangleStrip2D::UpdatePos( POINT2D* pVertexes, const unsigned int iVertexNbr, const bool bUpdateColor )
 {
 	//safty concern
 	if( iVertexNbr <= 0 )
@@ -96,7 +96,10 @@ void TriangleStrip2D::UpdatePos( POINT2D* pVertexes, const unsigned int iVertexN
 		//update vertexes if it's the same number 
 		for( int i = 0; i < m_iVertexNumber; ++i )
 		{
-			m_vec_PosList[i] = pVertexes[i];
+			m_vec_PosList[i].x = pVertexes[i].x;
+			m_vec_PosList[i].y = pVertexes[i].y;
+			if( bUpdateColor )
+				m_vec_PosList[i].color = pVertexes[i].color;
 		}
 	}
 
@@ -109,6 +112,10 @@ void TriangleStrip2D::UpdatePos( POINT2D* pVertexes, const unsigned int iVertexN
 void TriangleStrip2D::UpdateColor( const DWORD Color )
 {
 	SetColorDWORD( Color );
+	for( int i = 0; i < m_iVertexNumber; ++i )
+	{
+		m_vec_PosList[i].color = GetColorDWORD();
+	}
 
 	//update vertex buffer after alter of color
 	UpdateVertexBuffer();

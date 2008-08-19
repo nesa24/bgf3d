@@ -9,7 +9,7 @@ ObjectLinker::~ObjectLinker(void)
 {
 }
 
-int ObjectLinker::GetRegID( Object* pObj )
+long ObjectLinker::GetRegID( Object* pObj )
 {
 	//if Pointer is null, directly return
 	if( NULL == pObj )
@@ -37,9 +37,9 @@ int ObjectLinker::GetRegID( Object* pObj )
 		return RegNewObject( pObj );
 	}
 }
-int ObjectLinker::RegNewObject( Object* pObj )
+long ObjectLinker::RegNewObject( Object* pObj )
 {
-	//check for vacancy
+	/*/check for vacancy
 	RegMap::iterator map_itr = m_mapRegID.begin();
 	RegMap::iterator itr_end = m_mapRegID.end();
 	for( ; map_itr != itr_end; ++map_itr )
@@ -50,13 +50,14 @@ int ObjectLinker::RegNewObject( Object* pObj )
 			return (*map_itr).first;
 		}
 	}
+	//*/
 
-	//if no vacancy add new peer
+	// add new peer
 	++m_iMaxID;
 	m_mapRegID.insert( make_pair(m_iMaxID, pObj) );
 	return m_iMaxID;
 }
-Object* ObjectLinker::GetObject( int iID )
+Object* ObjectLinker::GetObject( long iID )
 {
 	if( iID > m_iMaxID || iID < 1)
 		return NULL;
@@ -81,4 +82,9 @@ bool ObjectLinker::RemoveObject( Object* pObj )
 	}
 
 	return false;
+}
+
+void ObjectLinker::ClearAll()
+{
+	m_mapRegID.clear();
 }

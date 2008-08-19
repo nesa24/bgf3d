@@ -35,7 +35,7 @@ public:
 	bool Is3DShape();
 
 public:
-	void UpdatePos( POINT2D* pVertexes, const unsigned int iVertexNbr );
+	void UpdatePos( POINT2D* pVertexes, const unsigned int iVertexNbr, const bool bUpdateColor = false );
 	void UpdateColor( const DWORD Color );
 
 private:

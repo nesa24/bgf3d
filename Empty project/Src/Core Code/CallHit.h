@@ -20,7 +20,7 @@ public:
 		{
 			if (!m_hitedObject)
 				m_hitedObject = obj;
-			if (obj->GetLayer() < m_hitedObject->GetLayer())
+			if (obj->GetLayer() <= m_hitedObject->GetLayer())
 				m_hitedObject = obj;
 		}
 	}

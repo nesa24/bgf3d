@@ -5,17 +5,18 @@
 using namespace std;
 class ObjectLinker
 {
-	typedef map< int, Object*> RegMap;
+	typedef map< long, Object*> RegMap;
 public:
 	ObjectLinker(void);
 	~ObjectLinker(void);
 
-	int GetRegID( Object* pObj );
-	int RegNewObject( Object* pObj );
-	Object* GetObject( int iID );
+	long GetRegID( Object* pObj );
+	long RegNewObject( Object* pObj );
+	Object* GetObject( long iID );
 	bool RemoveObject( Object* pObj );
+	void ClearAll();
 
 private:
 	RegMap m_mapRegID;
-	int m_iMaxID;
+	long m_iMaxID;
 };

@@ -35,12 +35,15 @@
 
 //Objects
 #include "Object.h"
-#include "Panel.h"
 #include "GlobalStuff.h"
 #include "Image.h"
 #include "TextBox.h"
 #include "EditBox.h"
 #include "button.h"
+//panels
+#include "Panel.h"
+#include "Squarepanel.h"
+//sprites
 #include "Sprite.h"
 
 #include "Shape.h"

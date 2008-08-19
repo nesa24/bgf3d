@@ -49,6 +49,7 @@ enum ObjectType
 		ObjectStaticText,
 
 		ObjectPanel,
+		ObjectSquarePanel,
 
 		ObjectSprite,
 
