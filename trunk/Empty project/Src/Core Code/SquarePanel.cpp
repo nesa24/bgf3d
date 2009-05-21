@@ -64,10 +64,10 @@ void SquarePanel::SetPanelColour( const DWORD ColourLT, const DWORD ColourRest )
 	TriangleStrip2D* pRect = (TriangleStrip2D*)singObjectLinker::instance().GetObject( m_IDPanelBottom );
 	POINT2D Vertexes[4] = 
 	{
-		{PanelPos.x, PanelPos.y								, ColourLT},
-		{PanelPos.x + PanelSize.x, PanelPos.y				, ColourRest},
-		{PanelPos.x, PanelPos.y + PanelSize.y				, ColourRest},
-		{PanelPos.x + PanelSize.x, PanelPos.y + PanelSize.y	, ColourRest}
+		{PanelPos.x, 				PanelPos.y				, ColourLT},
+		{PanelPos.x + PanelSize.x, 	PanelPos.y				, ColourRest},
+		{PanelPos.x, 				PanelPos.y + PanelSize.y, ColourRest},
+		{PanelPos.x + PanelSize.x, 	PanelPos.y + PanelSize.y, ColourRest}
 	};
 	pRect->UpdatePos( Vertexes, 4, true );
 }
@@ -106,13 +106,7 @@ void SquarePanel::RealTimeLogic(void)
 
 	//RTL basis
 	//suppose to run all RTL in all involved object
-	list<Object*>::iterator itr;
-	list<Object*>::iterator itr_end = m_Objects.end();
-	for ( itr = m_Objects.begin(); itr != itr_end; ++itr )
-	{
-		(*itr)->RealTimeLogic();
-	}
-
+	Panel::RealTimeLogic();
 }
 
 void SquarePanel::MouseClickAt( const POINT &posMouse )
